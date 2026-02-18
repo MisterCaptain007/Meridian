@@ -5,24 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Meridian — A Journal of Ideas</title>
 <meta name="description" content="A curated journal exploring technology, culture, design, and the ideas shaping our world."/>
-<meta name="robots" content="index, follow"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
-/* ====================== TOKENS ====================== */
 :root{
   --ink:#0f0e0d;--ink2:#3a3633;--ink3:#7a746e;
   --paper:#f7f4ef;--paper2:#edeae3;--paper3:#e2ddd6;
-  --card:#ffffff;--border:#d5d0c9;
+  --card:#fff;--border:#d5d0c9;
   --shadow:rgba(15,14,13,.08);--shadow2:rgba(15,14,13,.18);
-  --accent:#c0392b;--accent2:#e67e22;--green:#27ae60;
+  --accent:#c0392b;--green:#27ae60;
   --header:rgba(247,244,239,.95);
-  --ff-display:'Playfair Display',Georgia,serif;
-  --ff-body:'Source Serif 4',Georgia,serif;
-  --ff-mono:'DM Mono','Courier New',monospace;
+  --fd:'Playfair Display',Georgia,serif;
+  --fb:'Source Serif 4',Georgia,serif;
+  --fm:'DM Mono','Courier New',monospace;
   --ease:.22s cubic-bezier(.4,0,.2,1);
-  --r:6px;--mw:1160px;
+  --mw:1160px;
 }
 [data-theme=dark]{
   --ink:#f0ece4;--ink2:#c8c2b8;--ink3:#8a837a;
@@ -31,370 +29,391 @@
   --shadow:rgba(0,0,0,.3);--shadow2:rgba(0,0,0,.5);
   --header:rgba(20,18,16,.95);--accent:#e05a50;
 }
-/* ====================== RESET ====================== */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;font-size:16px}
-body{font-family:var(--ff-body);background:var(--paper);color:var(--ink);line-height:1.7;overflow-x:hidden;transition:background var(--ease),color var(--ease)}
-img{max-width:100%;display:block}a{color:inherit;text-decoration:none}ul{list-style:none}button{cursor:pointer;font-family:inherit;border:none;background:none}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--paper);color:var(--ink);line-height:1.7;overflow-x:hidden;transition:background var(--ease),color var(--ease)}
+a{color:inherit;text-decoration:none}ul{list-style:none}
+button{cursor:pointer;font-family:inherit;border:none;background:none}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--paper2)}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
 
-/* ====================== HEADER ====================== */
-.site-header{position:sticky;top:0;z-index:100;background:var(--header);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:background var(--ease)}
+/* NAV */
+.site-header{position:sticky;top:0;z-index:50;background:var(--header);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
 .nav-inner{max-width:var(--mw);margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:62px}
-.logo{font-family:var(--ff-display);font-size:1.45rem;font-weight:900;letter-spacing:-.02em;cursor:pointer}
+.logo{font-family:var(--fd);font-size:1.45rem;font-weight:900;letter-spacing:-.02em;cursor:pointer}
 .logo span{color:var(--accent)}
-.nav-links{display:flex;align-items:center;gap:28px}
-.nav-links a{font-family:var(--ff-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);transition:color var(--ease);position:relative}
-.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1.5px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform var(--ease)}
+.nav-links{display:flex;gap:28px}
+.nav-links a{font-family:var(--fm);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);transition:color var(--ease);cursor:pointer}
 .nav-links a:hover,.nav-links a.active{color:var(--ink)}
-.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
 .nav-actions{display:flex;align-items:center;gap:8px}
 .icon-btn{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--ink3);transition:background var(--ease),color var(--ease)}
 .icon-btn:hover{background:var(--paper2);color:var(--ink)}
-.moon-icon{display:none}[data-theme=dark] .sun-icon{display:none}[data-theme=dark] .moon-icon{display:block}
-.hamburger{display:none;flex-direction:column;gap:5px;padding:6px;border-radius:4px}
+.moon-i{display:none}[data-theme=dark] .sun-i{display:none}[data-theme=dark] .moon-i{display:block}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:6px}
 .hamburger span{display:block;width:20px;height:2px;background:var(--ink2);border-radius:1px;transition:transform var(--ease),opacity var(--ease)}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.mobile-nav{display:none;flex-direction:column;padding:14px 24px 18px;border-top:1px solid var(--border);background:var(--header);gap:14px}
-.mobile-nav.open{display:flex}
-.mobile-nav a{font-family:var(--ff-mono);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);padding:8px 0;border-bottom:1px solid var(--border);transition:color var(--ease)}
-.mobile-nav a:hover,.mobile-nav a.active{color:var(--accent)}
+.mnav{display:none;flex-direction:column;padding:14px 24px 18px;border-top:1px solid var(--border);background:var(--header);gap:12px}
+.mnav.open{display:flex}
+.mnav a{font-family:var(--fm);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);padding:8px 0;border-bottom:1px solid var(--border);cursor:pointer}
 
-/* ====================== PAGES ====================== */
-.page{display:none;animation:fadeUp .4s ease both}
-.page.active{display:block}
-@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-
-/* ====================== SEARCH OVERLAY ====================== */
-.search-overlay{position:fixed;inset:0;z-index:200;background:rgba(15,14,13,.7);backdrop-filter:blur(6px);display:flex;align-items:flex-start;justify-content:center;padding-top:80px;opacity:0;pointer-events:none;transition:opacity var(--ease)}
-.search-overlay.open{opacity:1;pointer-events:all}
-.search-box{width:100%;max-width:600px;margin:0 20px;transform:translateY(-18px);transition:transform var(--ease)}
-.search-overlay.open .search-box{transform:translateY(0)}
-.search-wrap{display:flex;align-items:center;background:var(--card);border:2px solid var(--accent);border-radius:8px;padding:4px 14px;gap:10px}
-.search-wrap svg{color:var(--ink3);flex-shrink:0}
-#srch{width:100%;background:none;border:none;outline:none;font-family:var(--ff-body);font-size:1.05rem;color:var(--ink);padding:11px 0}
-#srch::placeholder{color:var(--ink3)}
-.srch-results{margin-top:10px;background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;max-height:380px;overflow-y:auto;display:none}
+/* SEARCH OVERLAY */
+.srch-overlay{position:fixed;inset:0;z-index:200;background:rgba(15,14,13,.7);backdrop-filter:blur(6px);align-items:flex-start;justify-content:center;padding-top:80px;display:none;}
+.srch-overlay.visible{display:flex!important;}
+.srch-overlay.open{display:flex}
+.srch-box{width:100%;max-width:600px;margin:0 20px}
+.srch-wrap{display:flex;align-items:center;background:var(--card);border:2px solid var(--accent);border-radius:8px;padding:4px 14px;gap:10px}
+.srch-wrap svg{color:var(--ink3);flex-shrink:0}
+#srch-inp{width:100%;background:none;border:none;outline:none;font-family:var(--fb);font-size:1.05rem;color:var(--ink);padding:11px 0}
+#srch-inp::placeholder{color:var(--ink3)}
+.srch-res{margin-top:10px;background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;max-height:380px;overflow-y:auto;display:none}
 .srch-item{padding:13px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background var(--ease)}
-.srch-item:last-child{border-bottom:none}
 .srch-item:hover{background:var(--paper2)}
-.srch-title{font-family:var(--ff-display);font-weight:700;font-size:.92rem;margin-bottom:2px}
-.srch-meta{font-family:var(--ff-mono);font-size:.68rem;color:var(--ink3)}
+.srch-item:last-child{border-bottom:none}
+.srch-ttl{font-family:var(--fd);font-weight:700;font-size:.92rem;margin-bottom:2px}
+.srch-meta{font-family:var(--fm);font-size:.68rem;color:var(--ink3)}
 .srch-empty{padding:24px;text-align:center;color:var(--ink3);font-style:italic}
 
-/* ====================== HOME ====================== */
-.masthead{max-width:var(--mw);margin:0 auto;padding:52px 24px 36px;text-align:center}
-.masthead-tag{font-family:var(--ff-mono);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:inline-flex;align-items:center;gap:10px}
-.masthead-tag::before,.masthead-tag::after{content:'';display:block;width:28px;height:1px;background:var(--accent)}
-.masthead h1{font-size:clamp(2.6rem,7vw,5rem);line-height:1.05;letter-spacing:-.02em;font-weight:900}
-.masthead h1 em{font-style:italic;color:var(--accent)}
-.masthead-sub{margin-top:16px;color:var(--ink3);font-size:1rem;max-width:480px;margin-left:auto;margin-right:auto}
+/* PAGES */
+.page{display:none}
+.page.active{display:block;animation:fadeUp .4s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
-/* featured */
-.featured-section{max-width:var(--mw);margin:0 auto;padding:0 24px 48px}
+/* HOME */
+.masthead{max-width:var(--mw);margin:0 auto;padding:52px 24px 36px;text-align:center}
+.masthead-tag{font-family:var(--fm);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:inline-flex;align-items:center;gap:10px}
+.masthead-tag::before,.masthead-tag::after{content:'';display:block;width:28px;height:1px;background:var(--accent)}
+.masthead h1{font-size:clamp(2.6rem,7vw,5rem);line-height:1.05;letter-spacing:-.02em;font-weight:900;font-family:var(--fd)}
+.masthead h1 em{font-style:italic;color:var(--accent)}
+.masthead-sub{margin-top:16px;color:var(--ink3);max-width:480px;margin-left:auto;margin-right:auto}
+
+/* FEATURED */
+.featured-sec{max-width:var(--mw);margin:0 auto;padding:0 24px 48px}
 .feat-card{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--card);box-shadow:0 4px 28px var(--shadow);cursor:pointer;transition:box-shadow var(--ease),transform var(--ease)}
 .feat-card:hover{box-shadow:0 12px 48px var(--shadow2);transform:translateY(-3px)}
 .feat-img{position:relative;min-height:340px;overflow:hidden;background:var(--paper3)}
 .feat-img svg{width:100%;height:100%;position:absolute;inset:0;transition:transform .6s ease}
 .feat-card:hover .feat-img svg{transform:scale(1.05)}
 .feat-body{padding:44px 40px 36px;display:flex;flex-direction:column;justify-content:center}
-.cat-badge{display:inline-block;font-family:var(--ff-mono);font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;padding:4px 11px;border-radius:2px;background:var(--accent);color:#fff;margin-bottom:18px;width:fit-content}
-.feat-body h2{font-size:clamp(1.5rem,2.8vw,2.1rem);line-height:1.2;margin-bottom:14px;transition:color var(--ease)}
+.cat-badge{display:inline-block;font-family:var(--fm);font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;padding:4px 11px;border-radius:2px;background:var(--accent);color:#fff;margin-bottom:18px;width:fit-content}
+.feat-body h2{font-family:var(--fd);font-size:clamp(1.5rem,2.8vw,2.1rem);line-height:1.2;margin-bottom:14px;transition:color var(--ease)}
 .feat-card:hover .feat-body h2{color:var(--accent)}
 .feat-body .excerpt{color:var(--ink2);font-size:.92rem;line-height:1.75;margin-bottom:24px}
 .post-meta{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.author-av{width:34px;height:34px;border-radius:50%;overflow:hidden;flex-shrink:0}
-.author-av svg{width:100%;height:100%}
+.auth-av{width:34px;height:34px;border-radius:50%;overflow:hidden;flex-shrink:0}
 .meta-name{font-weight:600;font-size:.85rem}
-.meta-date{font-family:var(--ff-mono);font-size:.68rem;color:var(--ink3)}
+.meta-date{font-family:var(--fm);font-size:.68rem;color:var(--ink3)}
 .meta-div{width:1px;height:26px;background:var(--border)}
-.read-time{font-family:var(--ff-mono);font-size:.68rem;color:var(--ink3)}
-.read-arrow{margin-left:auto;display:flex;align-items:center;gap:5px;font-family:var(--ff-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);transition:gap var(--ease)}
-.feat-card:hover .read-arrow{gap:10px}
+.read-time{font-family:var(--fm);font-size:.68rem;color:var(--ink3)}
+.read-arrow{margin-left:auto;display:flex;align-items:center;gap:5px;font-family:var(--fm);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
 
-/* filter */
+/* FILTER */
 .filter-bar{max-width:var(--mw);margin:0 auto;padding:0 24px 28px;display:flex;align-items:center;gap:8px;overflow-x:auto;scrollbar-width:none}
 .filter-bar::-webkit-scrollbar{display:none}
-.filter-lbl{font-family:var(--ff-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);white-space:nowrap;margin-right:4px}
-.filter-btn{font-family:var(--ff-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;padding:6px 14px;border-radius:2px;border:1px solid var(--border);color:var(--ink3);background:transparent;white-space:nowrap;transition:all var(--ease)}
+.filter-lbl{font-family:var(--fm);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);white-space:nowrap;margin-right:4px}
+.filter-btn{font-family:var(--fm);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;padding:6px 14px;border-radius:2px;border:1px solid var(--border);color:var(--ink3);background:transparent;white-space:nowrap;transition:all var(--ease)}
 .filter-btn:hover{border-color:var(--ink3);color:var(--ink)}
 .filter-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
 
-/* grid */
+/* GRID */
 .content-wrap{max-width:var(--mw);margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr 280px;gap:44px;align-items:start}
 .blog-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
 .post-card{border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--card);cursor:pointer;display:flex;flex-direction:column;transition:box-shadow var(--ease),transform var(--ease);animation:fadeUp .5s ease both}
 .post-card:hover{box-shadow:0 8px 32px var(--shadow2);transform:translateY(-4px)}
-.card-img{aspect-ratio:16/9;background:var(--paper3);overflow:hidden;position:relative}
+.card-img{aspect-ratio:16/9;background:var(--paper3);overflow:hidden}
 .card-img svg{width:100%;height:100%;transition:transform .5s ease}
 .post-card:hover .card-img svg{transform:scale(1.06)}
 .card-body{padding:22px;flex:1;display:flex;flex-direction:column}
-.card-body .cat-badge{margin-bottom:10px}
-.card-title{font-size:1.08rem;font-weight:700;line-height:1.3;margin-bottom:8px;transition:color var(--ease)}
+.card-title{font-family:var(--fd);font-size:1.08rem;font-weight:700;line-height:1.3;margin:10px 0 8px;transition:color var(--ease)}
 .post-card:hover .card-title{color:var(--accent)}
 .card-excerpt{color:var(--ink2);font-size:.85rem;line-height:1.65;flex:1;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .card-foot{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);padding-top:12px}
 .card-author{font-size:.78rem;font-weight:600;color:var(--ink2)}
-.card-info{font-family:var(--ff-mono);font-size:.66rem;color:var(--ink3)}
+.card-info{font-family:var(--fm);font-size:.66rem;color:var(--ink3)}
+.no-results{grid-column:1/-1;text-align:center;padding:56px 24px;color:var(--ink3)}
 
-/* sidebar */
+/* SIDEBAR */
 .sidebar{position:sticky;top:76px}
 .sw{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:22px;margin-bottom:20px}
-.sw-title{font-family:var(--ff-mono);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink3);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.sw-title{font-family:var(--fm);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink3);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
 .sw-post{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:opacity var(--ease)}
 .sw-post:last-child{border-bottom:none;padding-bottom:0}
 .sw-post:hover{opacity:.7}
-.sw-thumb{width:52px;height:52px;border-radius:4px;background:var(--paper3);overflow:hidden;flex-shrink:0}
-.sw-thumb svg{width:100%;height:100%}
-.sw-info .sw-ttl{font-family:var(--ff-display);font-size:.82rem;font-weight:700;line-height:1.3;margin-bottom:3px}
-.sw-info .sw-dt{font-family:var(--ff-mono);font-size:.63rem;color:var(--ink3)}
+.sw-thumb{width:52px;height:52px;border-radius:4px;overflow:hidden;flex-shrink:0;background:var(--paper3)}
+.sw-ttl{font-family:var(--fd);font-size:.82rem;font-weight:700;line-height:1.3;margin-bottom:3px}
+.sw-dt{font-family:var(--fm);font-size:.63rem;color:var(--ink3)}
 .tag-list{display:flex;flex-wrap:wrap;gap:7px}
-.tag{font-family:var(--ff-mono);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;padding:4px 11px;border:1px solid var(--border);border-radius:2px;color:var(--ink3);cursor:pointer;transition:all var(--ease)}
+.tag{font-family:var(--fm);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;padding:4px 11px;border:1px solid var(--border);border-radius:2px;color:var(--ink3);cursor:pointer;transition:all var(--ease)}
 .tag:hover{border-color:var(--accent);color:var(--accent)}
 
-/* pagination */
+/* PAGINATION */
 .pagination{max-width:var(--mw);margin:48px auto 0;padding:0 24px;display:flex;align-items:center;justify-content:center;gap:7px}
-.page-btn{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:4px;font-family:var(--ff-mono);font-size:.78rem;color:var(--ink3);background:var(--card);transition:all var(--ease)}
+.page-btn{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:4px;font-family:var(--fm);font-size:.78rem;color:var(--ink3);background:var(--card);transition:all var(--ease)}
 .page-btn:hover{border-color:var(--ink3);color:var(--ink)}
 .page-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
-.page-btn.disabled{opacity:.4;pointer-events:none}
-.no-results{grid-column:1/-1;text-align:center;padding:56px 24px;color:var(--ink3)}
+.page-btn:disabled{opacity:.4;pointer-events:none}
 
-/* ====================== SINGLE POST ====================== */
-.post-hdr{max-width:720px;margin:0 auto;padding:52px 24px 36px;text-align:center}
-.post-hdr .cat-badge{margin:0 auto 18px}
-.post-hdr h1{font-size:clamp(1.9rem,5vw,3rem);line-height:1.15;margin-bottom:18px}
+/* SINGLE POST */
+.back-btn{display:inline-flex;align-items:center;gap:7px;font-family:var(--fm);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);padding:20px 24px;cursor:pointer;transition:color var(--ease)}
+.back-btn:hover{color:var(--accent)}
+.post-hdr{max-width:720px;margin:0 auto;padding:32px 24px 36px;text-align:center}
+.post-hdr h1{font-family:var(--fd);font-size:clamp(1.9rem,5vw,3rem);line-height:1.15;margin:18px 0}
 .post-hdr .sub{font-size:1.1rem;color:var(--ink2);font-style:italic;line-height:1.6;margin-bottom:28px}
 .post-hdr-meta{display:flex;align-items:center;justify-content:center;gap:18px;padding:18px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);flex-wrap:wrap}
 .post-hero{max-width:var(--mw);margin:0 auto;padding:0 24px 44px}
-.post-hero-img{border-radius:12px;overflow:hidden;height:380px;background:var(--paper3)}
-.post-hero-img svg{width:100%;height:100%}
+.post-hero-img{border-radius:12px;overflow:hidden;height:380px}
 .post-layout{max-width:var(--mw);margin:0 auto;padding:0 24px 72px;display:grid;grid-template-columns:1fr 260px;gap:56px;align-items:start}
 .post-content{font-size:1.02rem;line-height:1.85}
 .post-content p{margin-bottom:1.4em}
-.post-content h2{font-size:1.5rem;margin:2em 0 .65em;padding-bottom:10px;border-bottom:2px solid var(--border)}
-.post-content h3{font-size:1.2rem;margin:1.6em 0 .5em}
+.post-content h2{font-family:var(--fd);font-size:1.5rem;margin:2em 0 .65em;padding-bottom:10px;border-bottom:2px solid var(--border)}
+.post-content h3{font-family:var(--fd);font-size:1.2rem;margin:1.6em 0 .5em}
 .post-content blockquote{margin:1.8em 0;padding:20px 24px;border-left:4px solid var(--accent);background:var(--paper2);border-radius:0 8px 8px 0;font-style:italic;font-size:1.08rem;color:var(--ink2)}
-.post-content code{font-family:var(--ff-mono);font-size:.86em;background:var(--paper2);padding:2px 6px;border-radius:3px;color:var(--accent)}
-.post-content a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.post-content code{font-family:var(--fm);font-size:.86em;background:var(--paper2);padding:2px 6px;border-radius:3px;color:var(--accent)}
 .post-content ul,.post-content ol{margin:1em 0 1.4em 1.5em}
 .post-content li{margin-bottom:.35em;list-style:disc}
 .post-content ol li{list-style:decimal}
 .post-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:36px;padding-top:24px;border-top:1px solid var(--border)}
-.post-tag{font-family:var(--ff-mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border:1px solid var(--border);border-radius:2px;color:var(--ink3);cursor:pointer;transition:all var(--ease)}
-.post-tag:hover{border-color:var(--accent);color:var(--accent)}
+.post-tag{font-family:var(--fm);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border:1px solid var(--border);border-radius:2px;color:var(--ink3)}
 .post-sidebar{position:sticky;top:76px}
 .toc-list li{padding:6px 0;border-bottom:1px solid var(--border)}
 .toc-list li:last-child{border-bottom:none}
 .toc-list a{font-size:.84rem;color:var(--ink2);transition:color var(--ease)}
 .toc-list a:hover{color:var(--accent)}
 .share-btns{display:flex;gap:8px;flex-wrap:wrap}
-.share-btn{padding:7px 14px;border:1px solid var(--border);border-radius:4px;font-family:var(--ff-mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);background:var(--card);transition:all var(--ease)}
+.share-btn{padding:7px 14px;border:1px solid var(--border);border-radius:4px;font-family:var(--fm);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);background:var(--card);transition:all var(--ease)}
 .share-btn:hover{background:var(--accent);border-color:var(--accent);color:#fff}
-.back-btn{display:inline-flex;align-items:center;gap:7px;font-family:var(--ff-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);padding:20px 24px;cursor:pointer;transition:color var(--ease);max-width:var(--mw);margin:0 auto;display:flex}
-.back-btn:hover{color:var(--accent)}
-.back-btn svg{transition:transform var(--ease)}
-.back-btn:hover svg{transform:translateX(-4px)}
 
-/* ====================== ABOUT ====================== */
+/* ABOUT */
 .about-hero{max-width:var(--mw);margin:0 auto;padding:60px 24px 44px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-.about-text h1{font-size:clamp(2.2rem,5vw,3.5rem);line-height:1.1;margin-bottom:22px}
+.about-text h1{font-family:var(--fd);font-size:clamp(2.2rem,5vw,3.5rem);line-height:1.1;margin-bottom:22px}
 .about-text h1 em{font-style:italic;color:var(--accent)}
-.about-text p{color:var(--ink2);font-size:1rem;line-height:1.8;margin-bottom:1.3em}
+.about-text p{color:var(--ink2);line-height:1.8;margin-bottom:1.3em}
 .about-art{border-radius:12px;overflow:hidden;height:400px;background:var(--paper3)}
-.about-art svg{width:100%;height:100%}
 .team-section{max-width:var(--mw);margin:0 auto;padding:0 24px 60px}
-.sec-label{font-family:var(--ff-mono);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px}
-.sec-title{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:32px}
+.sec-lbl{font-family:var(--fm);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px}
+.sec-title{font-family:var(--fd);font-size:clamp(1.5rem,3vw,2rem);margin-bottom:32px}
 .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.team-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:26px;text-align:center;transition:box-shadow var(--ease)}
-.team-card:hover{box-shadow:0 8px 32px var(--shadow2)}
-.team-av{width:72px;height:72px;border-radius:50%;background:var(--paper3);margin:0 auto 14px;overflow:hidden}
-.team-av svg{width:100%;height:100%}
-.team-name{font-size:1.05rem;font-weight:700;margin-bottom:4px}
-.team-role{font-family:var(--ff-mono);font-size:.68rem;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.team-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:26px;text-align:center}
+.team-av{width:72px;height:72px;border-radius:50%;margin:0 auto 14px;overflow:hidden;background:var(--paper3)}
+.team-name{font-family:var(--fd);font-size:1.05rem;font-weight:700;margin-bottom:4px}
+.team-role{font-family:var(--fm);font-size:.68rem;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
 .team-bio{font-size:.85rem;color:var(--ink2);line-height:1.65}
 
-/* ====================== CONTACT ====================== */
+/* CONTACT */
 .contact-layout{max-width:var(--mw);margin:0 auto;padding:60px 24px 72px;display:grid;grid-template-columns:1fr 1fr;gap:56px}
-.contact-info h1{font-size:clamp(2rem,4vw,2.8rem);margin-bottom:18px}
-.contact-info p{color:var(--ink2);line-height:1.8;margin-bottom:1.3em;font-size:1rem}
-.contact-detail{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px}
+.contact-info h1{font-family:var(--fd);font-size:clamp(2rem,4vw,2.8rem);margin-bottom:18px}
+.contact-info p{color:var(--ink2);line-height:1.8;margin-bottom:1.3em}
+.c-detail{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px}
 .c-icon{width:38px;height:38px;border-radius:8px;background:var(--paper2);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--accent)}
-.c-lbl{font-family:var(--ff-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:2px}
+.c-lbl{font-family:var(--fm);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:2px}
 .c-val{font-size:.92rem}
-.contact-form{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:32px}
-.contact-form h3{font-size:1.25rem;margin-bottom:22px}
+.contact-form-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:32px}
+.contact-form-wrap h3{font-family:var(--fd);font-size:1.25rem;margin-bottom:22px}
 .fg{margin-bottom:18px}
-.fl{display:block;font-family:var(--ff-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:7px}
-.fc{width:100%;background:var(--paper2);border:1px solid var(--border);border-radius:4px;padding:10px 14px;font-family:var(--ff-body);font-size:.9rem;color:var(--ink);outline:none;transition:border-color var(--ease),box-shadow var(--ease);resize:vertical}
-.fc:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(192,57,43,.1)}
+.fl{display:block;font-family:var(--fm);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:7px}
+.fc{width:100%;background:var(--paper2);border:1px solid var(--border);border-radius:4px;padding:10px 14px;font-family:var(--fb);font-size:.9rem;color:var(--ink);outline:none;transition:border-color var(--ease);resize:vertical}
+.fc:focus{border-color:var(--accent)}
 textarea.fc{min-height:110px}
-.btn-primary{background:var(--accent);color:#fff;padding:12px 28px;border-radius:4px;font-family:var(--ff-mono);font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;transition:opacity var(--ease),transform var(--ease);width:100%}
-.btn-primary:hover{opacity:.86;transform:translateY(-1px)}
-.form-ok{text-align:center;padding:28px;display:none}
-.form-ok.show{display:block;animation:fadeUp .4s ease}
+.btn-primary{background:var(--accent);color:#fff;padding:12px 28px;border-radius:4px;font-family:var(--fm);font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;width:100%;transition:opacity var(--ease)}
+.btn-primary:hover{opacity:.86}
+.form-ok{display:none;text-align:center;padding:28px}
+.form-ok.show{display:block}
 .form-ok svg{color:var(--green);margin:0 auto 14px}
-.form-ok h3{font-size:1.2rem;margin-bottom:8px}
+.form-ok h3{font-family:var(--fd);font-size:1.2rem;margin-bottom:8px}
 .form-ok p{color:var(--ink2);font-size:.88rem}
 
-/* ====================== NEWSLETTER ====================== */
+/* NEWSLETTER */
 .newsletter{background:var(--ink);color:var(--paper);padding:52px 24px;text-align:center;margin-top:64px}
 [data-theme=dark] .newsletter{background:var(--paper3);color:var(--ink)}
-.newsletter h2{font-size:clamp(1.5rem,3.5vw,2.2rem);margin-bottom:10px}
-.newsletter p{opacity:.7;margin-bottom:24px;font-size:.92rem}
-.nl-form{display:flex;max-width:400px;margin:0 auto;border-radius:4px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.25)}
-.nl-form input{flex:1;padding:13px 16px;border:none;outline:none;font-family:var(--ff-body);font-size:.88rem;background:rgba(255,255,255,.12);color:var(--paper)}
+.newsletter h2{font-family:var(--fd);font-size:clamp(1.5rem,3.5vw,2.2rem);margin-bottom:10px}
+.newsletter p{opacity:.7;margin-bottom:24px}
+.nl-form{display:flex;max-width:400px;margin:0 auto;border-radius:4px;overflow:hidden}
+.nl-form input{flex:1;padding:13px 16px;border:none;outline:none;font-family:var(--fb);font-size:.88rem;background:rgba(255,255,255,.12);color:var(--paper)}
 [data-theme=dark] .nl-form input{background:var(--paper2);color:var(--ink)}
 .nl-form input::placeholder{opacity:.5}
-.nl-form button{padding:13px 20px;background:var(--accent);color:#fff;font-family:var(--ff-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border:none;transition:opacity var(--ease)}
-.nl-form button:hover{opacity:.85}
+.nl-form button{padding:13px 20px;background:var(--accent);color:#fff;font-family:var(--fm);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border:none}
 
-/* ====================== FOOTER ====================== */
-.site-footer{background:var(--paper2);border-top:1px solid var(--border);margin-top:0}
+/* FOOTER */
+.site-footer{background:var(--paper2);border-top:1px solid var(--border)}
 .footer-inner{max-width:var(--mw);margin:0 auto;padding:44px 24px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px}
-.footer-brand .logo{font-size:1.2rem;margin-bottom:10px}
-.footer-brand p{font-size:.85rem;color:var(--ink3);line-height:1.7;max-width:260px}
-.footer-col h4{font-family:var(--ff-mono);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink3);margin-bottom:14px}
+.footer-brand p{font-size:.85rem;color:var(--ink3);line-height:1.7;max-width:260px;margin-top:10px}
+.footer-col h4{font-family:var(--fm);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink3);margin-bottom:14px}
 .footer-col ul li{margin-bottom:9px}
-.footer-col ul li a{font-size:.85rem;color:var(--ink2);transition:color var(--ease)}
+.footer-col ul li a{font-size:.85rem;color:var(--ink2);cursor:pointer;transition:color var(--ease)}
 .footer-col ul li a:hover{color:var(--accent)}
 .footer-btm{border-top:1px solid var(--border);padding:18px 24px;max-width:var(--mw);margin:0 auto;display:flex;align-items:center;justify-content:space-between}
-.footer-btm p{font-family:var(--ff-mono);font-size:.68rem;color:var(--ink3)}
-.soc-links{display:flex;gap:10px}
-.soc-link{width:30px;height:30px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--ink3);transition:all var(--ease)}
-.soc-link:hover{border-color:var(--accent);color:var(--accent)}
-.reading-progress{position:fixed;top:0;left:0;width:0;height:3px;background:var(--accent);z-index:999;transition:width .1s linear}
-.toast{position:fixed;bottom:22px;right:22px;background:var(--ink);color:var(--paper);padding:11px 18px;border-radius:6px;font-family:var(--ff-mono);font-size:.76rem;box-shadow:0 8px 24px var(--shadow2);transform:translateY(70px);opacity:0;transition:all .3s cubic-bezier(.34,1.56,.64,1);z-index:300}
-.toast.show{transform:translateY(0);opacity:1}
+.footer-btm p{font-family:var(--fm);font-size:.68rem;color:var(--ink3)}
 
-/* ====================== ADMIN ====================== */
-/* login */
-#admin-login{position:fixed;inset:0;z-index:1000;background:var(--bg,#0d0d0f);display:none;align-items:center;justify-content:center}
-#admin-login.show{display:flex}
-.adm-login-card{width:100%;max-width:400px;margin:20px;background:#16161a;border:1px solid #2e2e38;border-radius:18px;padding:44px 36px;box-shadow:0 12px 48px rgba(0,0,0,.6);animation:fadeUp .5s ease both}
-.adm-logo{font-family:var(--ff-display);font-size:1.6rem;font-weight:900;color:#e8e6f0;margin-bottom:4px}
+/* TOAST */
+.toast{position:fixed;bottom:22px;right:22px;background:var(--ink);color:var(--paper);padding:11px 18px;border-radius:6px;font-family:var(--fm);font-size:.76rem;box-shadow:0 8px 24px var(--shadow2);opacity:0;pointer-events:none;transition:opacity .3s ease,transform .3s ease;transform:translateY(10px);z-index:9999}
+.toast.show{opacity:1;transform:translateY(0)}
+
+/* READING PROGRESS */
+.rp{position:fixed;top:0;left:0;width:0;height:3px;background:var(--accent);z-index:999;transition:width .1s linear}
+
+/* ==========================================
+   ADMIN STYLES
+========================================== */
+/* Floating button */
+.adm-fab{
+  position:fixed;bottom:24px;right:24px;z-index:300;
+  width:52px;height:52px;border-radius:50%;
+  background:#7c5cfc;color:#fff;border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(124,92,252,.45);
+  transition:transform .2s,box-shadow .2s;
+  font-size:22px;
+}
+.adm-fab:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(124,92,252,.6)}
+
+/* Login modal */
+.adm-modal{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.85);align-items:center;justify-content:center;display:none;}
+.adm-modal.visible{display:flex!important;}
+.adm-modal-card{
+  width:100%;max-width:420px;margin:20px;
+  background:#16161a;border:1px solid #2e2e38;
+  border-radius:20px;padding:44px 36px;
+  box-shadow:0 20px 60px rgba(0,0,0,.8);
+}
+.adm-logo{font-family:var(--fd);font-size:1.6rem;font-weight:900;color:#e8e6f0;margin-bottom:4px}
 .adm-logo span{color:#a07cff}
-.adm-sub{font-family:var(--ff-mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#5a5870;margin-bottom:32px}
-.adm-lbl{display:block;font-family:var(--ff-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#5a5870;margin-bottom:7px}
-.adm-inp{width:100%;background:#1e1e24;border:1px solid #2e2e38;border-radius:6px;padding:11px 14px;color:#e8e6f0;font-size:.92rem;outline:none;margin-bottom:16px;font-family:inherit;transition:border-color .2s}
+.adm-sub{font-family:var(--fm);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#5a5870;margin-bottom:32px}
+.adm-lbl{display:block;font-family:var(--fm);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#5a5870;margin-bottom:7px;margin-top:14px}
+.adm-lbl:first-of-type{margin-top:0}
+.adm-inp{width:100%;background:#1e1e24;border:1px solid #2e2e38;border-radius:6px;padding:11px 14px;color:#e8e6f0;font-size:.92rem;outline:none;font-family:inherit;transition:border-color .2s}
 .adm-inp:focus{border-color:#7c5cfc}
-.adm-btn{width:100%;background:#7c5cfc;color:#fff;padding:12px;border-radius:6px;font-family:var(--ff-mono);font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:none;margin-top:6px;transition:opacity .2s}
-.adm-btn:hover{opacity:.85}
+.adm-login-btn{width:100%;background:#7c5cfc;color:#fff;padding:12px;border-radius:6px;font-family:var(--fm);font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:none;margin-top:20px;transition:opacity .2s}
+.adm-login-btn:hover{opacity:.85}
 .adm-err{color:#fc5c7c;font-size:.78rem;margin-top:10px;text-align:center;min-height:18px}
-.adm-hint{margin-top:20px;padding:11px 14px;background:#1e1e24;border:1px solid #2e2e38;border-radius:6px;font-size:.76rem;color:#5a5870;font-family:var(--ff-mono)}
-.adm-hint span{color:#a07cff}
+.adm-hint{margin-top:20px;padding:11px 14px;background:#1e1e24;border:1px solid #2e2e38;border-radius:6px;font-size:.76rem;color:#5a5870;font-family:var(--fm);line-height:1.7}
+.adm-hint b{color:#a07cff}
+.adm-back-btn{width:100%;margin-top:14px;padding:9px;border:1px solid #2e2e38;border-radius:6px;font-family:var(--fm);font-size:.7rem;color:#5a5870;cursor:pointer;background:none;letter-spacing:.08em;text-transform:uppercase;transition:color .2s,border-color .2s}
+.adm-back-btn:hover{color:#9896aa;border-color:#9896aa}
 
-/* admin shell */
-#admin-panel{position:fixed;inset:0;z-index:500;background:#0d0d0f;display:none;flex-direction:column;overflow:hidden}
-#admin-panel.show{display:flex}
+/* GitHub settings inside login */
+.gh-section{margin-top:18px;border-top:1px solid #2e2e38;padding-top:16px}
+.gh-toggle-btn{width:100%;display:flex;align-items:center;justify-content:space-between;background:none;border:none;cursor:pointer;color:#5a5870;font-family:var(--fm);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:0;transition:color .2s}
+.gh-toggle-btn:hover{color:#9896aa}
+.gh-toggle-btn svg{transition:transform .2s;flex-shrink:0}
+.gh-fields{display:none;flex-direction:column;gap:10px;margin-top:14px}
+.gh-fields.open{display:flex}
+.gh-save-btn{background:#26262e;color:#a07cff;padding:9px;border-radius:6px;font-family:var(--fm);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:1px solid #3a3a48;transition:all .2s;width:100%}
+.gh-save-btn:hover{background:#3a3a48}
+.gh-note{font-size:.7rem;color:#3a3a48;line-height:1.6;font-family:var(--fm)}
+
+/* Admin panel */
+.adm-panel{position:fixed;inset:0;z-index:900;background:#0d0d0f;flex-direction:column;overflow:hidden;display:none;}
+.adm-panel.visible{display:flex!important;}
 .adm-topbar{height:58px;background:#16161a;border-bottom:1px solid #2e2e38;display:flex;align-items:center;justify-content:space-between;padding:0 24px;flex-shrink:0}
-.adm-topbar-left{display:flex;align-items:center;gap:16px}
-.adm-topbar-logo{font-family:var(--ff-display);font-size:1.1rem;font-weight:900;color:#e8e6f0}
-.adm-topbar-logo span{color:#a07cff}
-.adm-topbar-sep{width:1px;height:20px;background:#2e2e38}
-.adm-topbar-title{font-family:var(--ff-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#9896aa}
-.adm-topbar-right{display:flex;align-items:center;gap:10px}
-.adm-user-badge{display:flex;align-items:center;gap:8px;padding:6px 12px;background:#1e1e24;border:1px solid #2e2e38;border-radius:6px;font-family:var(--ff-mono);font-size:.7rem;color:#9896aa}
-.adm-user-dot{width:8px;height:8px;border-radius:50%;background:#4cd9a0;flex-shrink:0}
-.adm-close-btn,.adm-logout-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;border:1px solid #2e2e38;border-radius:6px;font-family:var(--ff-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:#9896aa;cursor:pointer;background:none;transition:all .2s}
-.adm-close-btn:hover{border-color:#7c5cfc;color:#a07cff}
-.adm-logout-btn:hover{border-color:#fc5c7c;color:#fc5c7c}
+.adm-topbar-l{display:flex;align-items:center;gap:14px}
+.adm-brand{font-family:var(--fd);font-size:1.1rem;font-weight:900;color:#e8e6f0}
+.adm-brand span{color:#a07cff}
+.adm-sep{width:1px;height:20px;background:#2e2e38}
+.adm-page-title{font-family:var(--fm);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#9896aa}
+.adm-topbar-r{display:flex;align-items:center;gap:10px}
+.adm-user{display:flex;align-items:center;gap:8px;padding:6px 12px;background:#1e1e24;border:1px solid #2e2e38;border-radius:6px;font-family:var(--fm);font-size:.7rem;color:#9896aa}
+.adm-dot{width:8px;height:8px;border-radius:50%;background:#4cd9a0}
+.adm-topbar-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;border:1px solid #2e2e38;border-radius:6px;font-family:var(--fm);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:#9896aa;cursor:pointer;background:none;transition:all .2s}
+.adm-topbar-btn:hover.view{border-color:#7c5cfc;color:#a07cff}
+.adm-topbar-btn:hover.logout{border-color:#fc5c7c;color:#fc5c7c}
 
 .adm-body{flex:1;overflow-y:auto;padding:28px;max-width:900px;width:100%;margin:0 auto}
 
-/* tabs */
+/* Tabs */
 .adm-tabs{display:flex;gap:4px;margin-bottom:24px;background:#1e1e24;border-radius:8px;padding:4px;width:fit-content}
-.adm-tab{padding:8px 20px;border-radius:6px;font-family:var(--ff-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#9896aa;cursor:pointer;transition:all .2s}
+.adm-tab{padding:8px 20px;border-radius:6px;font-family:var(--fm);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#9896aa;cursor:pointer;transition:all .2s}
 .adm-tab.active{background:#7c5cfc;color:#fff}
 .adm-tab:hover:not(.active){color:#e8e6f0}
 
-.adm-panel{display:none;animation:fadeUp .3s ease both}
-.adm-panel.active{display:block}
+/* Tab panels */
+.adm-view{display:none}
+.adm-view.active{display:block;animation:fadeUp .3s ease both}
 
-/* post list */
+/* Posts list */
 .adm-post-list{display:flex;flex-direction:column;gap:10px}
-.adm-post-item{background:#16161a;border:1px solid #2e2e38;border-radius:8px;padding:16px 18px;display:flex;align-items:center;gap:14px;transition:border-color .2s}
-.adm-post-item:hover{border-color:#3a3a48}
-.adm-post-info{flex:1;min-width:0}
-.adm-post-ttl{font-weight:600;font-size:.9rem;color:#e8e6f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:4px}
-.adm-post-meta{font-family:var(--ff-mono);font-size:.66rem;color:#5a5870}
-.adm-post-status{font-family:var(--ff-mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:20px;white-space:nowrap}
-.adm-post-status.published{background:#4cd9a018;color:#4cd9a0;border:1px solid #4cd9a030}
-.adm-post-status.draft{background:#fbbf2418;color:#fbbf24;border:1px solid #fbbf2430}
-.adm-act-btns{display:flex;gap:6px;flex-shrink:0}
-.adm-act{width:30px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#5a5870;cursor:pointer;transition:all .2s;border:1px solid transparent}
+.adm-list-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.adm-list-count{font-family:var(--fm);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:#5a5870}
+.adm-new-btn{background:#7c5cfc;color:#fff;padding:8px 16px;border-radius:6px;font-family:var(--fm);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:none;transition:opacity .2s}
+.adm-new-btn:hover{opacity:.85}
+.adm-item{background:#16161a;border:1px solid #2e2e38;border-radius:8px;padding:16px 18px;display:flex;align-items:center;gap:14px;transition:border-color .2s}
+.adm-item:hover{border-color:#3a3a48}
+.adm-item-info{flex:1;min-width:0}
+.adm-item-title{font-weight:600;font-size:.9rem;color:#e8e6f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:4px}
+.adm-item-meta{font-family:var(--fm);font-size:.66rem;color:#5a5870}
+.adm-status{font-family:var(--fm);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.adm-status.pub{background:#4cd9a018;color:#4cd9a0;border:1px solid #4cd9a030}
+.adm-status.dft{background:#fbbf2418;color:#fbbf24;border:1px solid #fbbf2430}
+.adm-actions{display:flex;gap:6px;flex-shrink:0}
+.adm-act{width:30px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#5a5870;cursor:pointer;transition:all .2s;border:1px solid transparent;background:none}
 .adm-act.edit:hover{background:#7c5cfc18;color:#a07cff;border-color:#7c5cfc30}
 .adm-act.del:hover{background:#fc5c7c18;color:#fc5c7c;border-color:#fc5c7c30}
-.adm-empty{text-align:center;padding:48px 20px;color:#5a5870;font-size:.88rem}
+.adm-empty{text-align:center;padding:48px 20px;color:#5a5870}
 .adm-empty svg{margin:0 auto 12px;opacity:.3}
 
-/* editor */
+/* Editor */
 .adm-form{display:flex;flex-direction:column;gap:16px}
 .adm-fg{display:flex;flex-direction:column;gap:6px}
-.adm-fl{font-family:var(--ff-mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#5a5870}
+.adm-fl{font-family:var(--fm);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#5a5870}
 .adm-fc{background:#1e1e24;border:1px solid #2e2e38;border-radius:6px;padding:10px 14px;color:#e8e6f0;font-size:.9rem;outline:none;width:100%;font-family:inherit;transition:border-color .2s,box-shadow .2s}
-.adm-fc:focus{border-color:#7c5cfc;box-shadow:0 0 0 3px #7c5cfc18}
+.adm-fc:focus{border-color:#7c5cfc;box-shadow:0 0 0 3px rgba(124,92,252,.15)}
 .adm-fc::placeholder{color:#3a3a48}
-textarea.adm-fc{resize:vertical;line-height:1.7;min-height:80px;font-family:var(--ff-mono);font-size:.82rem}
+textarea.adm-fc{resize:vertical;line-height:1.7;min-height:80px}
 .adm-toolbar{display:flex;gap:4px;padding:8px 12px;background:#1e1e24;border:1px solid #2e2e38;border-bottom:none;border-radius:6px 6px 0 0;flex-wrap:wrap}
-.adm-tb-btn{width:28px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:4px;color:#5a5870;font-family:var(--ff-mono);font-size:.76rem;font-weight:700;cursor:pointer;transition:all .2s;background:none;border:none}
+.adm-tb-btn{width:28px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:4px;color:#5a5870;font-family:var(--fm);font-size:.76rem;font-weight:700;cursor:pointer;transition:all .2s;background:none;border:none}
 .adm-tb-btn:hover{background:#26262e;color:#e8e6f0}
 .adm-tb-sep{width:1px;height:18px;background:#2e2e38;margin:4px 2px;align-self:center}
-.adm-content{border-radius:0 0 6px 6px!important}
-.adm-form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.adm-content-area{border-radius:0 0 6px 6px!important;min-height:260px;font-family:var(--fm);font-size:.82rem}
+.adm-2col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .adm-sel{background:#1e1e24;border:1px solid #2e2e38;border-radius:6px;padding:10px 14px;color:#e8e6f0;font-size:.88rem;outline:none;width:100%;cursor:pointer;font-family:inherit;transition:border-color .2s}
 .adm-sel:focus{border-color:#7c5cfc}
-.adm-form-actions{display:flex;gap:10px;padding-top:6px}
-.adm-save-btn{flex:1;background:#7c5cfc;color:#fff;padding:11px;border-radius:6px;font-family:var(--ff-mono);font-size:.76rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:none;transition:opacity .2s}
-.adm-save-btn:hover{opacity:.85}
-.adm-draft-btn{background:#1e1e24;color:#9896aa;padding:11px 20px;border-radius:6px;font-family:var(--ff-mono);font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:1px solid #2e2e38;transition:all .2s}
-.adm-draft-btn:hover{border-color:#9896aa;color:#e8e6f0}
-.adm-cancel-btn{background:none;color:#5a5870;padding:11px 16px;border-radius:6px;font-family:var(--ff-mono);font-size:.76rem;cursor:pointer;border:1px solid transparent;transition:all .2s}
-.adm-cancel-btn:hover{color:#e8e6f0;border-color:#2e2e38}
 .adm-toggle-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:#1e1e24;border:1px solid #2e2e38;border-radius:6px}
-.adm-toggle-lbl{font-family:var(--ff-mono);font-size:.72rem;color:#9896aa}
-.toggle{width:36px;height:20px;background:#2e2e38;border-radius:10px;position:relative;cursor:pointer;transition:background .2s}
+.adm-toggle-lbl{font-family:var(--fm);font-size:.72rem;color:#9896aa}
+.toggle{width:36px;height:20px;background:#2e2e38;border-radius:10px;position:relative;cursor:pointer;transition:background .2s;flex-shrink:0}
 .toggle.on{background:#7c5cfc}
 .toggle::after{content:'';position:absolute;width:14px;height:14px;border-radius:50%;background:#fff;top:3px;left:3px;transition:transform .2s}
 .toggle.on::after{transform:translateX(16px)}
+.adm-form-btns{display:flex;gap:10px;padding-top:4px}
+.adm-save-btn{flex:1;background:#7c5cfc;color:#fff;padding:11px;border-radius:6px;font-family:var(--fm);font-size:.76rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:none;transition:opacity .2s}
+.adm-save-btn:hover{opacity:.85}
+.adm-cancel-btn{background:none;color:#5a5870;padding:11px 16px;border-radius:6px;font-family:var(--fm);font-size:.76rem;cursor:pointer;border:1px solid #2e2e38;transition:all .2s}
+.adm-cancel-btn:hover{color:#e8e6f0;border-color:#5a5870}
 
-/* export panel */
-.adm-export-box{background:#16161a;border:1px solid #2e2e38;border-radius:8px;padding:24px}
-.adm-export-box h3{font-size:1rem;color:#e8e6f0;margin-bottom:8px}
-.adm-export-box p{font-size:.82rem;color:#5a5870;margin-bottom:18px;line-height:1.65}
-.adm-export-code{background:#1e1e24;border:1px solid #2e2e38;border-radius:6px;padding:14px;font-family:var(--ff-mono);font-size:.76rem;color:#9896aa;overflow-x:auto;white-space:pre;max-height:280px;overflow-y:auto;margin-bottom:14px;line-height:1.7}
-.adm-copy-btn{background:#7c5cfc;color:#fff;padding:10px 22px;border-radius:6px;font-family:var(--ff-mono);font-size:.74rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:none;transition:opacity .2s;margin-right:10px}
+/* Export */
+.adm-export-card{background:#16161a;border:1px solid #2e2e38;border-radius:12px;padding:24px;margin-bottom:16px}
+.adm-export-card h3{color:#e8e6f0;font-size:1rem;margin-bottom:8px}
+.adm-export-card p{color:#5a5870;font-size:.82rem;margin-bottom:16px;line-height:1.65}
+.adm-gh-status{display:flex;align-items:center;gap:10px;padding:12px 14px;background:#1e1e24;border:1px solid #2e2e38;border-radius:6px;margin-bottom:14px;font-family:var(--fm);font-size:.75rem}
+.adm-gh-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.adm-publish-btn{width:100%;background:#4cd9a0;color:#0d0d0f;padding:14px;border-radius:8px;font-family:var(--fm);font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border:none;transition:opacity .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.adm-publish-btn:hover{opacity:.88}
+.adm-publish-btn:disabled{opacity:.5;cursor:not-allowed}
+.adm-log{display:none;margin-top:12px;padding:12px 14px;background:#1e1e24;border:1px solid #2e2e38;border-radius:6px;font-family:var(--fm);font-size:.74rem;color:#9896aa;line-height:1.8}
+.adm-manual-btns{display:flex;gap:10px;flex-wrap:wrap}
+.adm-copy-btn{background:#7c5cfc;color:#fff;padding:10px 20px;border-radius:6px;font-family:var(--fm);font-size:.74rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:none;transition:opacity .2s}
 .adm-copy-btn:hover{opacity:.85}
-.adm-note{margin-top:16px;padding:12px 14px;background:#fbbf2418;border:1px solid #fbbf2430;border-radius:6px;font-size:.78rem;color:#fbbf24;line-height:1.65}
-.adm-note code{background:#1e1e24;padding:1px 5px;border-radius:3px;font-family:var(--ff-mono)}
+.adm-dl-btn{background:#1e1e24;color:#9896aa;padding:10px 20px;border-radius:6px;font-family:var(--fm);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:1px solid #2e2e38;transition:all .2s}
+.adm-dl-btn:hover{border-color:#9896aa;color:#e8e6f0}
+.adm-note{margin-top:14px;padding:12px 14px;background:#fbbf2418;border:1px solid #fbbf2430;border-radius:6px;font-size:.78rem;color:#fbbf24;line-height:1.65}
+.adm-note code{background:#1e1e24;padding:1px 5px;border-radius:3px;font-family:var(--fm)}
 
-/* delete confirm */
-.adm-confirm{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.7);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center}
-.adm-confirm.show{display:flex}
-.adm-confirm-card{background:#16161a;border:1px solid #2e2e38;border-radius:12px;padding:28px;max-width:360px;width:calc(100% - 40px);box-shadow:0 12px 48px rgba(0,0,0,.6)}
-.adm-confirm-card h3{font-size:1.05rem;color:#e8e6f0;margin-bottom:8px}
-.adm-confirm-card p{font-size:.84rem;color:#9896aa;margin-bottom:22px;line-height:1.6}
-.adm-confirm-actions{display:flex;gap:10px;justify-content:flex-end}
-.adm-del-cancel{background:none;color:#9896aa;padding:9px 16px;border:1px solid #2e2e38;border-radius:6px;font-family:var(--ff-mono);font-size:.72rem;cursor:pointer;transition:all .2s}
-.adm-del-cancel:hover{color:#e8e6f0;border-color:#9896aa}
-.adm-del-confirm{background:#fc5c7c;color:#fff;padding:9px 16px;border:none;border-radius:6px;font-family:var(--ff-mono);font-size:.72rem;cursor:pointer;transition:opacity .2s}
-.adm-del-confirm:hover{opacity:.85}
+/* Delete confirm */
+.del-confirm{position:fixed;inset:0;z-index:1100;background:rgba(0,0,0,.75);align-items:center;justify-content:center;display:none;}
+.del-confirm.visible{display:flex!important;}
+.del-confirm-card{background:#16161a;border:1px solid #2e2e38;border-radius:12px;padding:28px;max-width:360px;width:calc(100% - 40px)}
+.del-confirm-card h3{color:#e8e6f0;font-size:1.05rem;margin-bottom:8px}
+.del-confirm-card p{color:#9896aa;font-size:.84rem;margin-bottom:22px;line-height:1.6}
+.del-btns{display:flex;gap:10px;justify-content:flex-end}
+.del-cancel{background:none;color:#9896aa;padding:9px 16px;border:1px solid #2e2e38;border-radius:6px;font-family:var(--fm);font-size:.72rem;cursor:pointer;transition:all .2s}
+.del-cancel:hover{color:#e8e6f0;border-color:#9896aa}
+.del-ok{background:#fc5c7c;color:#fff;padding:9px 16px;border:none;border-radius:6px;font-family:var(--fm);font-size:.72rem;cursor:pointer}
 
-/* floating admin btn */
-.adm-float-btn{position:fixed;bottom:24px;right:24px;z-index:400;background:#7c5cfc;color:#fff;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(124,92,252,.4);cursor:pointer;border:none;transition:transform .2s,box-shadow .2s}
-.adm-float-btn:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(124,92,252,.5)}
-.adm-float-btn title{display:none}
-
-/* ====================== RESPONSIVE ====================== */
+/* RESPONSIVE */
 @media(max-width:1024px){
   .blog-grid{grid-template-columns:1fr}
   .content-wrap{grid-template-columns:1fr}
-  .footer-inner{grid-template-columns:1fr 1fr}
   .post-layout{grid-template-columns:1fr}
   .post-sidebar{position:static}
+  .footer-inner{grid-template-columns:1fr 1fr}
 }
 @media(max-width:768px){
   .nav-links{display:none}.hamburger{display:flex}
@@ -407,75 +426,67 @@ textarea.adm-fc{resize:vertical;line-height:1.7;min-height:80px;font-family:var(
   .team-grid{grid-template-columns:1fr}
   .footer-inner{grid-template-columns:1fr 1fr;gap:28px}
   .footer-btm{flex-direction:column;gap:14px;text-align:center}
-  .adm-form-row{grid-template-columns:1fr}
+  .adm-2col{grid-template-columns:1fr}
 }
 @media(max-width:540px){
   .footer-inner{grid-template-columns:1fr}
   .nl-form{flex-direction:column}
-  .nl-form input,.nl-form button{width:100%;text-align:center}
-  .adm-body{padding:16px}
 }
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
 
-<!-- Reading progress -->
-<div class="reading-progress" id="rp"></div>
-<!-- Toast -->
+<div class="rp" id="rp"></div>
 <div class="toast" id="toast"></div>
 
-<!-- ======== SEARCH OVERLAY ======== -->
-<div class="search-overlay" id="so">
-  <div class="search-box">
-    <div class="search-wrap">
+<!-- SEARCH -->
+<div class="srch-overlay" id="srch-overlay">
+  <div class="srch-box">
+    <div class="srch-wrap">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input type="text" id="srch" placeholder="Search articles…" autocomplete="off"/>
-      <button onclick="closeSrch()" style="color:var(--ink3);padding:2px">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
-      </button>
+      <input type="text" id="srch-inp" placeholder="Search articles…" autocomplete="off"/>
+      <button onclick="closeSrch()" style="color:var(--ink3);padding:2px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
     </div>
-    <div class="srch-results" id="sr"></div>
+    <div class="srch-res" id="srch-res"></div>
   </div>
 </div>
 
-<!-- ======== HEADER ======== -->
+<!-- HEADER -->
 <header class="site-header">
   <div class="nav-inner">
-    <div class="logo" onclick="nav('home')">Meri<span>dian</span></div>
+    <div class="logo" onclick="goPage('home')">Meri<span>dian</span></div>
     <nav class="nav-links">
-      <a id="nl-home" class="active" onclick="nav('home')">Home</a>
-      <a id="nl-about" onclick="nav('about')">About</a>
-      <a id="nl-contact" onclick="nav('contact')">Contact</a>
+      <a id="nl-home" class="active" onclick="goPage('home')">Home</a>
+      <a id="nl-about" onclick="goPage('about')">About</a>
+      <a id="nl-contact" onclick="goPage('contact')">Contact</a>
     </nav>
     <div class="nav-actions">
       <button class="icon-btn" onclick="openSrch()"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
       <button class="icon-btn" onclick="toggleTheme()">
-        <svg class="sun-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-        <svg class="moon-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="sun-i" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg class="moon-i" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
       <button class="hamburger" id="hbg" onclick="toggleMnav()"><span></span><span></span><span></span></button>
     </div>
   </div>
-  <nav class="mobile-nav" id="mnav">
-    <a onclick="nav('home');closeMnav()">Home</a>
-    <a onclick="nav('about');closeMnav()">About</a>
-    <a onclick="nav('contact');closeMnav()">Contact</a>
+  <nav class="mnav" id="mnav">
+    <a onclick="goPage('home');closeMnav()">Home</a>
+    <a onclick="goPage('about');closeMnav()">About</a>
+    <a onclick="goPage('contact');closeMnav()">Contact</a>
   </nav>
 </header>
 
-<!-- ======== MAIN ======== -->
 <main>
 
-<!-- HOME PAGE -->
+<!-- HOME -->
 <div class="page active" id="page-home">
   <section class="masthead">
-    <div class="masthead-tag">Vol. III, No. 4 — 2026</div>
+    <div class="masthead-tag">Vol. III — 2026</div>
     <h1>Where <em>ideas</em> find<br>their form.</h1>
     <p class="masthead-sub">Essays on technology, culture, design, and the forces shaping how we live.</p>
   </section>
-
-  <section class="featured-section" id="featured-section"></section>
-
+  <section class="featured-sec" id="featured-sec"></section>
   <div class="filter-bar">
     <span class="filter-lbl">Filter:</span>
     <button class="filter-btn active" onclick="filterPosts('all',this)">All</button>
@@ -485,89 +496,81 @@ textarea.adm-fc{resize:vertical;line-height:1.7;min-height:80px;font-family:var(
     <button class="filter-btn" onclick="filterPosts('Science',this)">Science</button>
     <button class="filter-btn" onclick="filterPosts('Philosophy',this)">Philosophy</button>
   </div>
-
   <div class="content-wrap">
     <div>
       <div class="blog-grid" id="blog-grid"></div>
       <div class="pagination" id="pagination"></div>
     </div>
     <aside class="sidebar">
-      <div class="sw">
-        <div class="sw-title">Popular This Week</div>
-        <div id="sw-popular"></div>
-      </div>
-      <div class="sw">
-        <div class="sw-title">Browse Topics</div>
+      <div class="sw"><div class="sw-title">Popular This Week</div><div id="sw-popular"></div></div>
+      <div class="sw"><div class="sw-title">Browse Topics</div>
         <div class="tag-list">
           <span class="tag" onclick="filterPosts('Technology',null)">Technology</span>
           <span class="tag" onclick="filterPosts('Culture',null)">Culture</span>
           <span class="tag" onclick="filterPosts('Design',null)">Design</span>
           <span class="tag" onclick="filterPosts('Science',null)">Science</span>
           <span class="tag" onclick="filterPosts('Philosophy',null)">Philosophy</span>
-          <span class="tag">Climate</span><span class="tag">Cities</span><span class="tag">Language</span>
         </div>
       </div>
     </aside>
   </div>
 </div>
 
-<!-- SINGLE POST PAGE -->
+<!-- POST -->
 <div class="page" id="page-post">
-  <div class="back-btn" onclick="nav('home')">
+  <div class="back-btn" onclick="goPage('home')">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
     Back to all articles
   </div>
   <div id="post-root"></div>
 </div>
 
-<!-- ABOUT PAGE -->
+<!-- ABOUT -->
 <div class="page" id="page-about">
   <section class="about-hero">
     <div class="about-text">
-      <p style="font-family:var(--ff-mono);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px">About Meridian</p>
+      <p style="font-family:var(--fm);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px">About Meridian</p>
       <h1>A journal built on <em>curiosity</em>.</h1>
       <p>Meridian was founded with a single belief: long-form writing about complicated ideas still matters. We exist at the intersection of technology, culture, and design.</p>
-      <p>We publish slowly, on purpose. No algorithm to satisfy, no engagement metrics to chase. Just a passionate community of readers who believe sitting with a difficult idea is worthwhile.</p>
+      <p>We publish slowly, on purpose. No algorithm to satisfy, no engagement metrics to chase — just a passionate community of readers.</p>
     </div>
     <div class="about-art">
-      <svg viewBox="0 0 560 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <svg viewBox="0 0 560 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
         <rect width="560" height="400" fill="#edeae3"/>
         <circle cx="280" cy="200" r="160" fill="none" stroke="#3a3633" stroke-width="1" opacity=".15"/>
-        <circle cx="280" cy="200" r="110" fill="none" stroke="#3a3633" stroke-width="1" opacity=".1"/>
         <ellipse cx="280" cy="200" rx="160" ry="80" fill="none" stroke="#c0392b" stroke-width="1.5" opacity=".3"/>
         <line x1="280" y1="40" x2="280" y2="360" stroke="#c0392b" stroke-width="1.5" opacity=".3"/>
-        <text x="280" y="218" text-anchor="middle" fill="#3a3633" opacity=".07" font-size="80" font-family="Georgia" font-style="italic" font-weight="900">M</text>
       </svg>
     </div>
   </section>
   <section class="team-section">
-    <p class="sec-label">The Team</p>
+    <p class="sec-lbl">The Team</p>
     <h2 class="sec-title">The people behind the pages.</h2>
     <div class="team-grid">
-      <div class="team-card"><div class="team-av"><svg viewBox="0 0 72 72"><rect width="72" height="72" fill="#8B5CF6"/><circle cx="36" cy="28" r="14" fill="rgba(255,255,255,.4)"/><ellipse cx="36" cy="62" rx="22" ry="16" fill="rgba(255,255,255,.3)"/></svg></div><div class="team-name">Elena Vasquez</div><div class="team-role">Editor in Chief</div><p class="team-bio">Former tech reporter. Elena writes about minds — artificial and otherwise — with clarity and grace.</p></div>
-      <div class="team-card"><div class="team-av"><svg viewBox="0 0 72 72"><rect width="72" height="72" fill="#0D9488"/><circle cx="36" cy="28" r="14" fill="rgba(255,255,255,.4)"/><ellipse cx="36" cy="62" rx="22" ry="16" fill="rgba(255,255,255,.3)"/></svg></div><div class="team-name">Marcus Chen</div><div class="team-role">Senior Editor</div><p class="team-bio">Trained architect. Marcus sees everything as a design problem and his writing on urban futures is essential.</p></div>
-      <div class="team-card"><div class="team-av"><svg viewBox="0 0 72 72"><rect width="72" height="72" fill="#D97706"/><circle cx="36" cy="28" r="14" fill="rgba(255,255,255,.4)"/><ellipse cx="36" cy="62" rx="22" ry="16" fill="rgba(255,255,255,.3)"/></svg></div><div class="team-name">Priya Nair</div><div class="team-role">Contributing Editor</div><p class="team-bio">Science journalist covering biology, ecology, and the strange consolations of natural history.</p></div>
+      <div class="team-card"><div class="team-av"><svg viewBox="0 0 72 72"><rect width="72" height="72" rx="36" fill="#8B5CF6"/><circle cx="36" cy="28" r="14" fill="rgba(255,255,255,.4)"/><ellipse cx="36" cy="62" rx="22" ry="16" fill="rgba(255,255,255,.3)"/></svg></div><div class="team-name">Elena Vasquez</div><div class="team-role">Editor in Chief</div><p class="team-bio">Former tech reporter. Elena writes about minds — artificial and otherwise.</p></div>
+      <div class="team-card"><div class="team-av"><svg viewBox="0 0 72 72"><rect width="72" height="72" rx="36" fill="#0D9488"/><circle cx="36" cy="28" r="14" fill="rgba(255,255,255,.4)"/><ellipse cx="36" cy="62" rx="22" ry="16" fill="rgba(255,255,255,.3)"/></svg></div><div class="team-name">Marcus Chen</div><div class="team-role">Senior Editor</div><p class="team-bio">Trained architect. Marcus writes on urban futures and design.</p></div>
+      <div class="team-card"><div class="team-av"><svg viewBox="0 0 72 72"><rect width="72" height="72" rx="36" fill="#D97706"/><circle cx="36" cy="28" r="14" fill="rgba(255,255,255,.4)"/><ellipse cx="36" cy="62" rx="22" ry="16" fill="rgba(255,255,255,.3)"/></svg></div><div class="team-name">Priya Nair</div><div class="team-role">Contributing Editor</div><p class="team-bio">Science journalist covering biology, ecology, and natural history.</p></div>
     </div>
   </section>
 </div>
 
-<!-- CONTACT PAGE -->
+<!-- CONTACT -->
 <div class="page" id="page-contact">
   <div class="contact-layout">
     <div class="contact-info">
-      <h1>Let's start a<br><em style="font-style:italic;color:var(--accent)">conversation.</em></h1>
-      <p>We read every message we receive. Whether you want to pitch a piece, report an error, or simply share your thoughts — we're interested.</p>
+      <h1>Let's start a <em style="font-style:italic;color:var(--accent)">conversation.</em></h1>
+      <p>We read every message we receive. Whether you want to pitch a piece or share thoughts — we're interested.</p>
       <div style="margin-top:28px">
-        <div class="contact-detail"><div class="c-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="c-lbl">Email</div><div class="c-val">hello@meridian.com</div></div></div>
-        <div class="contact-detail"><div class="c-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="c-lbl">Location</div><div class="c-val">San Francisco & New York</div></div></div>
+        <div class="c-detail"><div class="c-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="c-lbl">Email</div><div class="c-val">hello@meridian.com</div></div></div>
+        <div class="c-detail"><div class="c-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="c-lbl">Location</div><div class="c-val">San Francisco & New York</div></div></div>
       </div>
     </div>
-    <div class="contact-form" id="cf-wrap">
+    <div class="contact-form-wrap">
       <h3>Send us a message</h3>
-      <form onsubmit="submitContact(event)">
+      <form id="contact-form" onsubmit="submitContact(event)">
         <div class="fg"><label class="fl">Your name</label><input class="fc" type="text" placeholder="Jane Smith" required/></div>
         <div class="fg"><label class="fl">Email</label><input class="fc" type="email" placeholder="jane@example.com" required/></div>
-        <div class="fg"><label class="fl">Message</label><textarea class="fc" rows="5" placeholder="Write your message here…" required></textarea></div>
+        <div class="fg"><label class="fl">Message</label><textarea class="fc" rows="5" placeholder="Write your message…" required></textarea></div>
         <button type="submit" class="btn-primary">Send Message</button>
       </form>
       <div class="form-ok" id="form-ok">
@@ -580,606 +583,547 @@ textarea.adm-fc{resize:vertical;line-height:1.7;min-height:80px;font-family:var(
 
 </main>
 
-<!-- Newsletter -->
+<!-- NEWSLETTER -->
 <section class="newsletter" id="nl-band">
   <h2>Don't miss an essay.</h2>
   <p>New pieces, twice a month. No noise.</p>
-  <form class="nl-form" onsubmit="subscribeNl(event)">
+  <form class="nl-form" onsubmit="subNl(event)">
     <input type="email" placeholder="your@email.com" required/>
     <button type="submit">Subscribe</button>
   </form>
 </section>
 
-<!-- Footer -->
+<!-- FOOTER -->
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-brand"><div class="logo">Meri<span>dian</span></div><p>A journal of ideas at the intersection of technology, culture, and design.</p></div>
-    <div class="footer-col"><h4>Navigate</h4><ul><li><a onclick="nav('home')">Home</a></li><li><a onclick="nav('about')">About</a></li><li><a onclick="nav('contact')">Contact</a></li></ul></div>
-    <div class="footer-col"><h4>Topics</h4><ul><li><a onclick="filterPosts('Technology',null);nav('home')">Technology</a></li><li><a onclick="filterPosts('Culture',null);nav('home')">Culture</a></li><li><a onclick="filterPosts('Design',null);nav('home')">Design</a></li><li><a onclick="filterPosts('Science',null);nav('home')">Science</a></li></ul></div>
+    <div class="footer-col"><h4>Navigate</h4><ul><li><a onclick="goPage('home')">Home</a></li><li><a onclick="goPage('about')">About</a></li><li><a onclick="goPage('contact')">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Topics</h4><ul><li><a onclick="filterPosts('Technology',null);goPage('home')">Technology</a></li><li><a onclick="filterPosts('Culture',null);goPage('home')">Culture</a></li><li><a onclick="filterPosts('Design',null);goPage('home')">Design</a></li><li><a onclick="filterPosts('Science',null);goPage('home')">Science</a></li></ul></div>
     <div class="footer-col"><h4>Info</h4><ul><li><a>Privacy Policy</a></li><li><a>Terms of Use</a></li></ul></div>
   </div>
-  <div class="footer-btm">
-    <p>© 2026 Meridian Journal. All rights reserved.</p>
-    <div class="soc-links">
-      <a class="soc-link" href="#"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.258 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-      <a class="soc-link" href="#"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4a16 16 0 0 1 16 16"/><path d="M4 11a9 9 0 0 1 9 9"/><circle cx="5" cy="19" r="1" fill="currentColor"/></svg></a>
-    </div>
-  </div>
+  <div class="footer-btm"><p>© 2026 Meridian Journal. All rights reserved.</p></div>
 </footer>
 
-<!-- ========== ADMIN FLOATING BUTTON ========== -->
-<button class="adm-float-btn" onclick="openAdminLogin()" title="Admin Login">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-</button>
+<!-- ========== ADMIN FAB ========== -->
+<button class="adm-fab" id="adm-fab" onclick="openAdmLogin()" title="Admin Login">✏️</button>
 
-<!-- ========== ADMIN LOGIN ========== -->
-<div id="admin-login">
-  <div class="adm-login-card">
+<!-- ========== ADMIN LOGIN MODAL ========== -->
+<div class="adm-modal" id="adm-modal">
+  <div class="adm-modal-card">
     <div class="adm-logo">Meri<span>dian</span></div>
     <div class="adm-sub">Author Login</div>
     <label class="adm-lbl">Username</label>
-    <input class="adm-inp" id="al-user" type="text" placeholder="author1 or author2" autocomplete="username" onkeydown="if(event.key==='Enter')doAdminLogin()"/>
+    <input class="adm-inp" id="al-user" type="text" placeholder="author1 or author2"/>
     <label class="adm-lbl">Password</label>
-    <input class="adm-inp" id="al-pass" type="password" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doAdminLogin()"/>
-    <button class="adm-btn" onclick="doAdminLogin()">Sign In</button>
+    <input class="adm-inp" id="al-pass" type="password" placeholder="••••••••"/>
+    <button class="adm-login-btn" onclick="doLogin()">Sign In →</button>
     <div class="adm-err" id="al-err"></div>
     <div class="adm-hint">
-      Author 1 → <span>author1</span> / <span>blog2026</span><br/>
-      Author 2 → <span>author2</span> / <span>write2026</span>
+      Author 1: <b>author1</b> / <b>blog2026</b><br>
+      Author 2: <b>author2</b> / <b>write2026</b>
     </div>
-    <button onclick="closeAdminLogin()" style="margin-top:16px;width:100%;padding:9px;border:1px solid #2e2e38;border-radius:6px;font-family:var(--ff-mono);font-size:.7rem;color:#5a5870;cursor:pointer;background:none;letter-spacing:.08em;text-transform:uppercase;transition:color .2s" onmouseover="this.style.color='#9896aa'" onmouseout="this.style.color='#5a5870'">← Back to Blog</button>
+    <!-- GitHub Settings -->
+    <div class="gh-section">
+      <button class="gh-toggle-btn" onclick="toggleGhFields()" id="gh-toggle">
+        ⚙️ GitHub Settings (for auto-publish)
+        <svg id="gh-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="gh-fields" id="gh-fields">
+        <label class="adm-lbl" style="margin-top:0">GitHub Username</label>
+        <input class="adm-inp" id="gh-user" type="text" placeholder="e.g. johnsmith"/>
+        <label class="adm-lbl">Repository Name</label>
+        <input class="adm-inp" id="gh-repo" type="text" placeholder="e.g. johnsmith.github.io"/>
+        <label class="adm-lbl">Personal Access Token</label>
+        <input class="adm-inp" id="gh-token" type="password" placeholder="ghp_xxxxxxxxxxxxxxxx"/>
+        <button class="gh-save-btn" onclick="saveGhSettings()">Save GitHub Settings</button>
+        <p class="gh-note">Token saved only in your browser's localStorage — never shared publicly.</p>
+      </div>
+    </div>
+    <button class="adm-back-btn" onclick="closeAdmLogin()">← Back to Blog</button>
   </div>
 </div>
 
 <!-- ========== ADMIN PANEL ========== -->
-<div id="admin-panel">
+<div class="adm-panel" id="adm-panel">
   <div class="adm-topbar">
-    <div class="adm-topbar-left">
-      <div class="adm-topbar-logo">Meri<span>dian</span></div>
-      <div class="adm-topbar-sep"></div>
-      <div class="adm-topbar-title">Author Dashboard</div>
+    <div class="adm-topbar-l">
+      <div class="adm-brand">Meri<span>dian</span></div>
+      <div class="adm-sep"></div>
+      <div class="adm-page-title">Author Dashboard</div>
     </div>
-    <div class="adm-topbar-right">
-      <div class="adm-user-badge"><div class="adm-user-dot"></div><span id="adm-user-name">Author</span></div>
-      <button class="adm-close-btn" onclick="closeAdminPanel()">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        View Blog
-      </button>
-      <button class="adm-logout-btn" onclick="doLogout()">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-        Sign Out
-      </button>
+    <div class="adm-topbar-r">
+      <div class="adm-user"><div class="adm-dot"></div><span id="adm-user-name">Author</span></div>
+      <button class="adm-topbar-btn view" onclick="closeAdmPanel()">← View Blog</button>
+      <button class="adm-topbar-btn logout" onclick="doLogout()">Sign Out</button>
     </div>
   </div>
-
   <div class="adm-body">
     <div class="adm-tabs">
-      <div class="adm-tab active" onclick="admTab('posts',this)">📄 My Posts</div>
-      <div class="adm-tab" onclick="admTab('editor',this);newAdmPost()">✏️ Write New</div>
-      <div class="adm-tab" onclick="admTab('export',this);renderExport()">📤 Export</div>
+      <div class="adm-tab active" id="tab-posts" onclick="switchTab('posts')">📄 My Posts</div>
+      <div class="adm-tab" id="tab-editor" onclick="switchTab('editor');newPost()">✏️ Write New</div>
+      <div class="adm-tab" id="tab-export" onclick="switchTab('export');initExport()">🚀 Publish</div>
     </div>
 
-    <!-- Posts Panel -->
-    <div class="adm-panel active" id="adm-posts">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
-        <div style="font-family:var(--ff-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:#5a5870">All Posts (<span id="adm-post-count">0</span>)</div>
-        <button onclick="admTab('editor',document.querySelectorAll('.adm-tab')[1]);newAdmPost()" style="background:#7c5cfc;color:#fff;padding:7px 16px;border-radius:6px;font-family:var(--ff-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:none;transition:opacity .2s" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">+ New Post</button>
+    <!-- POSTS VIEW -->
+    <div class="adm-view active" id="view-posts">
+      <div class="adm-list-header">
+        <div class="adm-list-count">All Posts (<span id="post-count">0</span>)</div>
+        <button class="adm-new-btn" onclick="switchTab('editor');newPost()">+ Write New</button>
       </div>
-      <div class="adm-post-list" id="adm-post-list"></div>
+      <div class="adm-post-list" id="post-list"></div>
     </div>
 
-    <!-- Editor Panel -->
-    <div class="adm-panel" id="adm-editor">
-      <div class="adm-form" id="adm-form">
-        <div class="adm-fg">
-          <label class="adm-fl">Title *</label>
-          <input class="adm-fc" id="af-title" type="text" placeholder="Enter a compelling title…"/>
-        </div>
-        <div class="adm-fg">
-          <label class="adm-fl">Subtitle / Deck</label>
-          <input class="adm-fc" id="af-subtitle" type="text" placeholder="A sentence expanding on the title…"/>
-        </div>
-        <div class="adm-fg">
-          <label class="adm-fl">Excerpt * (shown on homepage card)</label>
-          <textarea class="adm-fc" id="af-excerpt" rows="3" placeholder="2–3 sentence preview shown on the blog card…"></textarea>
-        </div>
+    <!-- EDITOR VIEW -->
+    <div class="adm-view" id="view-editor">
+      <div class="adm-form">
+        <div class="adm-fg"><label class="adm-fl">Title *</label><input class="adm-fc" id="af-title" type="text" placeholder="Enter a compelling title…"/></div>
+        <div class="adm-fg"><label class="adm-fl">Subtitle</label><input class="adm-fc" id="af-subtitle" type="text" placeholder="A sentence expanding on the title…"/></div>
+        <div class="adm-fg"><label class="adm-fl">Excerpt * (shown on homepage card)</label><textarea class="adm-fc" id="af-excerpt" rows="3" placeholder="2–3 sentence preview…"></textarea></div>
         <div class="adm-fg">
           <label class="adm-fl">Content * (HTML supported)</label>
           <div class="adm-toolbar">
-            <button class="adm-tb-btn" onclick="admWrap('<p>','</p>')" title="Paragraph">¶</button>
-            <button class="adm-tb-btn" onclick="admWrap('<strong>','</strong>')" title="Bold"><b>B</b></button>
-            <button class="adm-tb-btn" onclick="admWrap('<em>','</em>')" title="Italic"><i>I</i></button>
+            <button class="adm-tb-btn" onclick="wrap('<p>','</p>')">¶</button>
+            <button class="adm-tb-btn" onclick="wrap('<strong>','</strong>')"><b>B</b></button>
+            <button class="adm-tb-btn" onclick="wrap('<em>','</em>')"><i>I</i></button>
             <div class="adm-tb-sep"></div>
-            <button class="adm-tb-btn" onclick="admInsert('<h2>Section Heading</h2>')" title="H2">H2</button>
-            <button class="adm-tb-btn" onclick="admInsert('<h3>Sub Heading</h3>')" title="H3">H3</button>
+            <button class="adm-tb-btn" onclick="ins('<h2>Heading</h2>')">H2</button>
+            <button class="adm-tb-btn" onclick="ins('<h3>Sub Heading</h3>')">H3</button>
             <div class="adm-tb-sep"></div>
-            <button class="adm-tb-btn" onclick="admInsert('<blockquote>Your quote here.</blockquote>')" title="Quote">"</button>
-            <button class="adm-tb-btn" onclick="admWrap('<code>','</code>')" title="Code">{}</button>
+            <button class="adm-tb-btn" onclick="ins('<blockquote>Quote here.</blockquote>')">"</button>
+            <button class="adm-tb-btn" onclick="wrap('<code>','</code>')">{}</button>
             <div class="adm-tb-sep"></div>
-            <button class="adm-tb-btn" onclick="admInsert('<ul>\n  <li>Item one</li>\n  <li>Item two</li>\n</ul>')" title="List">UL</button>
+            <button class="adm-tb-btn" onclick="ins('<ul>\n  <li>Item</li>\n</ul>')">UL</button>
           </div>
-          <textarea class="adm-fc adm-content" id="af-content" rows="14" placeholder="Write your article…&#10;&#10;Example:&#10;&lt;p&gt;Your opening paragraph.&lt;/p&gt;&#10;&lt;h2&gt;A Section Heading&lt;/h2&gt;&#10;&lt;p&gt;More content here.&lt;/p&gt;&#10;&lt;blockquote&gt;A pull quote.&lt;/blockquote&gt;"></textarea>
+          <textarea class="adm-fc adm-content-area" id="af-content" placeholder="Write your article in HTML…&#10;&lt;p&gt;Your paragraph.&lt;/p&gt;&#10;&lt;h2&gt;A Heading&lt;/h2&gt;&#10;&lt;blockquote&gt;A quote.&lt;/blockquote&gt;"></textarea>
         </div>
-        <div class="adm-form-row">
-          <div class="adm-fg">
-            <label class="adm-fl">Category *</label>
+        <div class="adm-2col">
+          <div class="adm-fg"><label class="adm-fl">Category *</label>
             <select class="adm-sel" id="af-cat">
               <option value="">— Select —</option>
               <option>Technology</option><option>Culture</option>
               <option>Design</option><option>Science</option><option>Philosophy</option>
             </select>
           </div>
-          <div class="adm-fg">
-            <label class="adm-fl">Read Time</label>
-            <input class="adm-fc" id="af-rt" type="text" placeholder="e.g. 5 min"/>
-          </div>
+          <div class="adm-fg"><label class="adm-fl">Read Time</label><input class="adm-fc" id="af-rt" type="text" placeholder="e.g. 5 min"/></div>
         </div>
-        <div class="adm-fg">
-          <label class="adm-fl">Tags (comma-separated)</label>
-          <input class="adm-fc" id="af-tags" type="text" placeholder="Technology, AI, Society"/>
-        </div>
+        <div class="adm-fg"><label class="adm-fl">Tags (comma-separated)</label><input class="adm-fc" id="af-tags" type="text" placeholder="Technology, AI, Society"/></div>
         <div class="adm-toggle-row">
-          <span class="adm-toggle-lbl">Publish immediately: <strong id="adm-status-lbl">Draft</strong></span>
-          <div class="toggle" id="adm-toggle" onclick="toggleAdmStatus()"></div>
+          <span class="adm-toggle-lbl">Status: <strong id="status-lbl">Draft</strong></span>
+          <div class="toggle" id="pub-toggle" onclick="togglePub()"></div>
         </div>
-        <div class="adm-form-actions">
-          <button class="adm-save-btn" onclick="saveAdmPost()">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;margin-right:5px"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
-            Save Post
-          </button>
-          <button class="adm-cancel-btn" onclick="admTab('posts',document.querySelectorAll('.adm-tab')[0])">Cancel</button>
+        <div class="adm-form-btns">
+          <button class="adm-save-btn" onclick="savePost()">Save Post</button>
+          <button class="adm-cancel-btn" onclick="switchTab('posts')">Cancel</button>
         </div>
       </div>
     </div>
 
-    <!-- Export Panel -->
-    <div class="adm-panel" id="adm-export">
-      <div class="adm-export-box">
-        <h3>📤 Export & Publish to GitHub Pages</h3>
-        <p>Follow these steps to make your new posts live on the internet:</p>
-        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px">
-          <div style="display:flex;gap:12px;align-items:flex-start;background:#1e1e24;border:1px solid #2e2e38;border-radius:6px;padding:14px">
-            <div style="width:24px;height:24px;border-radius:50%;background:#7c5cfc;display:flex;align-items:center;justify-content:center;font-family:var(--ff-mono);font-size:.72rem;font-weight:700;color:#fff;flex-shrink:0">1</div>
-            <div style="font-size:.84rem;color:#9896aa;line-height:1.65">Click <strong style="color:#e8e6f0">"Copy Updated HTML"</strong> button below to copy the complete updated blog file.</div>
-          </div>
-          <div style="display:flex;gap:12px;align-items:flex-start;background:#1e1e24;border:1px solid #2e2e38;border-radius:6px;padding:14px">
-            <div style="width:24px;height:24px;border-radius:50%;background:#7c5cfc;display:flex;align-items:center;justify-content:center;font-family:var(--ff-mono);font-size:.72rem;font-weight:700;color:#fff;flex-shrink:0">2</div>
-            <div style="font-size:.84rem;color:#9896aa;line-height:1.65">Go to your <strong style="color:#e8e6f0">GitHub repository</strong> → Click <code style="background:#26262e;padding:1px 5px;border-radius:3px;font-family:var(--ff-mono)">index.html</code> → Click the pencil ✏️ edit icon.</div>
-          </div>
-          <div style="display:flex;gap:12px;align-items:flex-start;background:#1e1e24;border:1px solid #2e2e38;border-radius:6px;padding:14px">
-            <div style="width:24px;height:24px;border-radius:50%;background:#7c5cfc;display:flex;align-items:center;justify-content:center;font-family:var(--ff-mono);font-size:.72rem;font-weight:700;color:#fff;flex-shrink:0">3</div>
-            <div style="font-size:.84rem;color:#9896aa;line-height:1.65">Select <strong style="color:#e8e6f0">all the content</strong> (Ctrl+A or Cmd+A), then <strong style="color:#e8e6f0">paste</strong> (Ctrl+V or Cmd+V) your copied content.</div>
-          </div>
-          <div style="display:flex;gap:12px;align-items:flex-start;background:#1e1e24;border:1px solid #2e2e38;border-radius:6px;padding:14px">
-            <div style="width:24px;height:24px;border-radius:50%;background:#4cd9a0;display:flex;align-items:center;justify-content:center;font-family:var(--ff-mono);font-size:.72rem;font-weight:700;color:#0d0d0f;flex-shrink:0">4</div>
-            <div style="font-size:.84rem;color:#9896aa;line-height:1.65">Click <strong style="color:#e8e6f0">"Commit changes"</strong> — your blog updates live within 60 seconds! 🎉</div>
-          </div>
+    <!-- EXPORT/PUBLISH VIEW -->
+    <div class="adm-view" id="view-export">
+      <!-- Auto publish -->
+      <div class="adm-export-card" style="border-color:#4cd9a030;background:linear-gradient(135deg,#0a140a,#0d0d0f)">
+        <h3 style="color:#4cd9a0">🚀 One-Click Publish to GitHub Pages</h3>
+        <p>Automatically pushes your updated blog live — no manual steps needed.</p>
+        <div class="adm-gh-status" id="gh-status-bar">
+          <div class="adm-gh-dot" id="gh-dot" style="background:#fbbf24"></div>
+          <span id="gh-status-txt" style="color:#fbbf24;font-family:var(--fm);font-size:.75rem">Not configured — open ⚙️ GitHub Settings in login screen.</span>
         </div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <button class="adm-copy-btn" onclick="copyFullHtml()">📋 Copy Updated HTML</button>
-          <button onclick="downloadHtml()" style="background:#1e1e24;color:#9896aa;padding:10px 20px;border-radius:6px;font-family:var(--ff-mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:1px solid #2e2e38;transition:all .2s" onmouseover="this.style.borderColor='#9896aa';this.style.color='#e8e6f0'" onmouseout="this.style.borderColor='#2e2e38';this.style.color='#9896aa'">⬇️ Download HTML File</button>
+        <button class="adm-publish-btn" id="pub-btn" onclick="publishToGH()">
+          🚀 Publish Live to GitHub Pages
+        </button>
+        <div class="adm-log" id="pub-log"></div>
+      </div>
+      <!-- Manual -->
+      <div class="adm-export-card">
+        <h3>📋 Manual Export (Fallback)</h3>
+        <p>Download the updated HTML and upload it manually to GitHub.</p>
+        <div class="adm-manual-btns">
+          <button class="adm-copy-btn" onclick="copyHtml()">📋 Copy HTML</button>
+          <button class="adm-dl-btn" onclick="dlHtml()">⬇️ Download HTML</button>
         </div>
-        <div class="adm-note" style="margin-top:16px">
-          <strong>Note for both authors:</strong> Always <strong>export and upload after writing</strong> so the other author sees your posts when they open the file next time. Both authors share the same posts via the exported HTML file.
-        </div>
+        <div class="adm-note">Go to GitHub → click <code>index.html</code> → ✏️ edit → select all → paste → commit. Live in ~60 seconds.</div>
       </div>
     </div>
 
   </div>
 </div>
 
-<!-- Delete Confirm Modal -->
-<div class="adm-confirm" id="adm-confirm">
-  <div class="adm-confirm-card">
+<!-- DELETE CONFIRM -->
+<div class="del-confirm" id="del-confirm">
+  <div class="del-confirm-card">
     <h3>Delete Post?</h3>
-    <p>Are you sure you want to delete "<span id="adm-del-title"></span>"? This cannot be undone.</p>
-    <div class="adm-confirm-actions">
-      <button class="adm-del-cancel" onclick="closeAdmConfirm()">Cancel</button>
-      <button class="adm-del-confirm" onclick="confirmAdmDelete()">Delete</button>
+    <p>Delete "<span id="del-title-txt"></span>"? This cannot be undone.</p>
+    <div class="del-btns">
+      <button class="del-cancel" onclick="closeDel()">Cancel</button>
+      <button class="del-ok" onclick="confirmDel()">Delete</button>
     </div>
   </div>
 </div>
 
 <script>
-/* ==============================================
-   BUILT-IN SAMPLE POSTS
-   (Authors' new posts get added alongside these)
-============================================== */
-const SAMPLE_POSTS = [
-  {
-    id:1,title:"The Intelligence We Invited: On Living With Artificial Minds",
-    subtitle:"We built mirrors that talk back. Now we have to figure out what that means.",
-    excerpt:"We spent decades imagining artificial intelligence as something alien. But the AI that actually arrived came through our own words, our habits of thought, our accumulated culture.",
-    category:"Technology",author:"Elena Vasquez",authorColor:"#8B5CF6",date:"Feb 14, 2026",readTime:"12 min",
-    tags:["AI","Technology","Culture"],published:true,featured:true,
-    content:`<p>When the first large language models began to produce text that felt genuinely thoughtful — not just grammatically correct, but surprising, apt, sometimes even beautiful — a certain kind of person felt a chill.</p><p>These systems had been trained on the accumulated written record of human civilization: every novel, paper, forum post, and scraped webpage that could be digitized. What had emerged was not a foreign intelligence but a distillation.</p><h2>The Mirror Problem</h2><p>Philosophers have long debated what it would mean to create a mind. But the AI we actually built sidesteps this question. It didn't need consciousness to be useful, or influential, or unsettling.</p><blockquote>"The question isn't whether the machine understands. The question is whether it matters."</blockquote><p>What matters is that these systems can produce outputs indistinguishable in many contexts from human reasoning.</p><h2>What We Do Next</h2><p>The question of what to do with this technology is, in some ways, the wrong question. The more useful question is: what kind of relationship do we want with it?</p><p>The intelligence we invited in is, in a very real sense, us. Made strange by the process of its creation, capable of surprising us. But made from our words, our arguments, our stories.</p>`
-  },
-  {
-    id:2,title:"The City as Algorithm: How Optimization Is Rewriting Urban Life",
-    subtitle:"Smart cities promised efficiency. But efficiency for whom?",
-    excerpt:"From traffic lights to zoning permits, the logic of optimization has quietly colonized urban planning. Cities are increasingly run by systems that can measure almost everything except what actually matters.",
-    category:"Culture",author:"Marcus Chen",authorColor:"#0D9488",date:"Feb 7, 2026",readTime:"9 min",
-    tags:["Cities","Technology","Urban Planning"],published:true,featured:false,
-    content:`<p>The smart city arrived quietly. It came as an upgrade to traffic systems, a new app for parking permits, a camera network for public safety.</p><p>Today, cities around the world are managed in part by algorithmic systems that process enormous quantities of data in real time. The logic is compelling: more data, better decisions.</p><h2>Efficiency and Its Discontents</h2><p>But efficiency is always relative to a goal, and goals encode values. When we optimize a city for throughput — for the movement of vehicles, for the speed of permit approvals — we are making choices about what matters.</p><blockquote>"A city optimized for efficiency is not the same as a city optimized for human flourishing."</blockquote><h2>The Measurement Problem</h2><p>The deeper issue is what doesn't get measured. Algorithmic city management is powerful at tracking things that can be quantified. It is terrible at tracking things that resist quantification: the quality of community life, the sense that a street is welcoming.</p>`
-  },
-  {
-    id:3,title:"Silence as Practice: What Contemplative Traditions Teach About Focus",
-    subtitle:"In an age of infinite distraction, the ancient technology of attention is more valuable than ever.",
-    excerpt:"The monastic traditions developed elaborate practices around silence and focused attention long before smartphones. They understood the mind would wander — and built systems to counteract this.",
-    category:"Philosophy",author:"Elena Vasquez",authorColor:"#8B5CF6",date:"Jan 28, 2026",readTime:"8 min",
-    tags:["Philosophy","Mindfulness","Attention"],published:true,featured:false,
-    content:`<p>There is a room in a Cistercian abbey in rural Burgundy where monks have been maintaining silence for nearly nine centuries. Not total silence — they speak when necessary, they sing the liturgy — but a disciplined quiet.</p><p>The practice looks, from the outside, like deprivation. From the inside, former monastics describe it as one of the most demanding and clarifying experiences available to a human being.</p><h2>The Ancient Science of Attention</h2><p>The contemplative traditions understood something neuroscience has only recently confirmed: attention is not a fixed capacity but a trainable skill.</p><blockquote>"Distraction is not a modern invention. What is modern is the density of the environment designed to exploit it."</blockquote><h2>What We Can Borrow</h2><p>The underlying insight is worth preserving: that the quality of our attention shapes the quality of our experience, and that attention can be cultivated. In an environment designed to capture and monetize attention, this is a small act of resistance.</p>`
-  },
-  {
-    id:4,title:"Typography as Ideology: How Fonts Shape the Stories We Tell",
-    subtitle:"The choice of a typeface is never merely aesthetic.",
-    excerpt:"When we pick a font, we're making a claim about authority, authenticity, and cultural belonging. The history of type design is a history of how societies understood themselves.",
-    category:"Design",author:"Marcus Chen",authorColor:"#0D9488",date:"Jan 9, 2026",readTime:"7 min",
-    tags:["Design","Typography","History"],published:true,featured:false,
-    content:`<p>Helvetica became the official typeface of the New York Metropolitan Transit Authority in 1970. This was a design decision. It was also, whether intentionally or not, an ideological one.</p><p>Helvetica, developed in Switzerland in 1957, was the visual embodiment of International Style modernism: rational, universal, clean. It said: this information is neutral, objective, above particular interests.</p><h2>No Font is Neutral</h2><p>There is no neutral typeface. Every font carries the fingerprints of its historical moment, its cultural context, the intentions of its designer.</p><blockquote>"Typography is the voice of the page. Change the font, change the voice — even when the words stay the same."</blockquote><h2>The Politics of Legibility</h2><p>The history of type design is, in part, a history of legibility as a political project. The choice of a typeface for a government document, a news organization, a protest sign, is still a choice about how to be perceived and what kind of authority to claim.</p>`
-  }
+/* ============================================
+   SAMPLE POSTS (built-in, always visible)
+============================================ */
+const SAMPLE = [
+  {id:1,title:"The Intelligence We Invited: On Living With Artificial Minds",subtitle:"We built mirrors that talk back.",excerpt:"We spent decades imagining AI as something alien. But the AI that arrived came through our own words, our habits of thought, our accumulated culture.",category:"Technology",author:"Elena Vasquez",authorColor:"#8B5CF6",date:"Feb 14, 2026",readTime:"12 min",tags:["AI","Technology","Culture"],published:true,featured:true,content:`<p>When the first large language models began to produce text that felt genuinely thoughtful, a certain kind of person felt a chill. Not the chill of horror. The chill of recognition.</p><p>These systems had been trained on the accumulated written record of human civilization. What had emerged was not a foreign intelligence but a distillation.</p><h2>The Mirror Problem</h2><p>Philosophers have long debated what it would mean to create a mind. But the AI we built sidesteps this question in an interesting way — it didn't need consciousness to be useful, or influential, or unsettling.</p><blockquote>"The question isn't whether the machine understands. The question is whether it matters."</blockquote><p>What matters is that these systems produce outputs indistinguishable in many contexts from human reasoning.</p><h2>What We Do Next</h2><p>The more useful question is: what kind of relationship do we want with it? The intelligence we invited in is, in a very real sense, us — made strange by the process of its creation.</p>`},
+  {id:2,title:"The City as Algorithm",subtitle:"Smart cities promised efficiency. But for whom?",excerpt:"From traffic lights to zoning permits, the logic of optimization has quietly colonized urban planning. Cities are run by systems that measure everything except what matters.",category:"Culture",author:"Marcus Chen",authorColor:"#0D9488",date:"Feb 7, 2026",readTime:"9 min",tags:["Cities","Technology"],published:true,featured:false,content:`<p>The smart city arrived quietly — as an upgrade to traffic systems, a new app for parking, a camera network for public safety.</p><h2>Efficiency and Its Discontents</h2><p>Efficiency is always relative to a goal, and goals encode values. When we optimize a city for throughput, we are making choices about what matters.</p><blockquote>"A city optimized for efficiency is not the same as a city optimized for human flourishing."</blockquote><h2>The Measurement Problem</h2><p>The deeper issue is what doesn't get measured — the quality of community life, the sense that a street is welcoming or hostile. The algorithm cannot tell us whether the neighbourhood is joyful.</p>`},
+  {id:3,title:"Silence as Practice",subtitle:"The ancient technology of attention.",excerpt:"Monastic traditions developed elaborate practices around silence long before smartphones. They understood the mind would wander — and built systems to counteract this.",category:"Philosophy",author:"Elena Vasquez",authorColor:"#8B5CF6",date:"Jan 28, 2026",readTime:"8 min",tags:["Philosophy","Mindfulness"],published:true,featured:false,content:`<p>There is a room in a Cistercian abbey where monks have maintained silence for nearly nine centuries — not total silence, but a disciplined quiet.</p><h2>The Ancient Science of Attention</h2><p>The contemplative traditions understood something neuroscience has only recently confirmed: attention is a trainable skill, not a fixed capacity.</p><blockquote>"Distraction is not a modern invention. What is modern is the density of the environment designed to exploit it."</blockquote>`},
+  {id:4,title:"Typography as Ideology",subtitle:"The choice of a typeface is never merely aesthetic.",excerpt:"When we pick a font, we're making a claim about authority and cultural belonging. The history of type design is a history of how societies understood themselves.",category:"Design",author:"Marcus Chen",authorColor:"#0D9488",date:"Jan 9, 2026",readTime:"7 min",tags:["Design","Typography"],published:true,featured:false,content:`<p>Helvetica became the official typeface of the New York MTA in 1970. This was a design decision. It was also an ideological one.</p><h2>No Font is Neutral</h2><p>Every font carries the fingerprints of its historical moment and the intentions of its designer.</p><blockquote>"Typography is the voice of the page. Change the font, change the voice."</blockquote>`}
 ];
 
-/* ==============================================
+/* ============================================
    STATE
-============================================== */
-let currentFilter = 'all';
-let currentPage = 1;
+============================================ */
+let curFilter = 'all';
+let curPage = 1;
 const PER_PAGE = 4;
-let admEditingId = null;
-let admIsPublished = false;
-let admDeleteTarget = null;
-let loggedInUser = null;
+let editingId = null;
+let isPublished = false;
+let delTarget = null;
+let loggedUser = null;
 
-/* Author credentials */
 const AUTHORS = {
-  author1: { pass: 'blog2026',  displayName: 'Author One' },
-  author2: { pass: 'write2026', displayName: 'Author Two' }
+  author1:{pass:'blog2026',name:'Author One',color:'#8B5CF6'},
+  author2:{pass:'write2026',name:'Author Two',color:'#0D9488'}
 };
 
-/* ==============================================
-   POSTS: merge sample + localStorage
-============================================== */
-function getStoredPosts() {
-  try { return JSON.parse(localStorage.getItem('meridian_posts') || '[]'); }
-  catch(e) { return []; }
+/* ============================================
+   STORAGE
+============================================ */
+function getStored(){
+  try{return JSON.parse(localStorage.getItem('m_posts')||'[]');}catch(e){return[];}
 }
-function saveStoredPosts(posts) {
-  localStorage.setItem('meridian_posts', JSON.stringify(posts));
-}
-function getAllPosts() {
-  const stored = getStoredPosts();
-  // Merge: stored posts override sample posts with same id
-  const storedIds = new Set(stored.map(p => p.id));
-  const samples = SAMPLE_POSTS.filter(p => !storedIds.has(p.id));
-  return [...samples, ...stored];
+function setStored(arr){localStorage.setItem('m_posts',JSON.stringify(arr));}
+function getAllPosts(){
+  const stored=getStored();
+  const ids=new Set(stored.map(p=>p.id));
+  return [...SAMPLE.filter(p=>!ids.has(p.id)),...stored];
 }
 
-/* ==============================================
-   BLOG RENDERING
-============================================== */
-function getFilteredPosts() {
-  const all = getAllPosts().filter(p => p.published !== false);
-  if (currentFilter === 'all') return all;
-  return all.filter(p => p.category === currentFilter);
-}
+/* ============================================
+   BLOG RENDER
+============================================ */
+function renderHome(){renderFeatured();renderGrid();renderPopular();}
 
-function renderHome() {
-  renderFeatured();
-  renderGrid();
-  renderSidebarPopular();
-}
-
-function renderFeatured() {
-  const all = getAllPosts().filter(p => p.published !== false);
-  const feat = all.find(p => p.featured) || all[0];
-  if (!feat) return;
-  document.getElementById('featured-section').innerHTML = `
-    <article class="feat-card" onclick="openPost(${feat.id})">
-      <div class="feat-img">${postSvg(feat.id, feat.authorColor || '#8B5CF6', 600, 400)}</div>
+function renderFeatured(){
+  const all=getAllPosts().filter(p=>p.published);
+  const f=all.find(p=>p.featured)||all[0];
+  if(!f){document.getElementById('featured-sec').innerHTML='';return;}
+  document.getElementById('featured-sec').innerHTML=`
+    <article class="feat-card" onclick="openPost(${f.id})">
+      <div class="feat-img">${pSvg(f.id,f.authorColor||'#8B5CF6',600,400)}</div>
       <div class="feat-body">
-        <span class="cat-badge">${feat.category}</span>
-        <h2>${feat.title}</h2>
-        <p class="excerpt">${feat.excerpt}</p>
+        <span class="cat-badge">${f.category}</span>
+        <h2>${f.title}</h2>
+        <p class="excerpt">${f.excerpt}</p>
         <div class="post-meta">
-          <div class="author-av">${authorSvg(feat.authorColor||'#8B5CF6',36)}</div>
-          <div><div class="meta-name">${feat.author}</div><div class="meta-date">${feat.date||''}</div></div>
+          <div class="auth-av">${aSvg(f.authorColor||'#8B5CF6',34)}</div>
+          <div><div class="meta-name">${f.author}</div><div class="meta-date">${f.date||''}</div></div>
           <div class="meta-div"></div>
-          <span class="read-time">${feat.readTime||'5 min'}</span>
-          <div class="read-arrow">Read <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          <span class="read-time">${f.readTime||'5 min'}</span>
+          <div class="read-arrow">Read →</div>
         </div>
       </div>
     </article>`;
 }
 
-function renderGrid() {
-  const filtered = getFilteredPosts();
-  const total = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
-  if (currentPage > total) currentPage = 1;
-  const slice = filtered.slice((currentPage-1)*PER_PAGE, currentPage*PER_PAGE);
-  const grid = document.getElementById('blog-grid');
-  grid.innerHTML = '';
-  if (!slice.length) {
-    grid.innerHTML = '<div class="no-results"><p>No articles in this category yet.</p></div>';
-  } else {
-    slice.forEach((p,i) => {
-      const card = document.createElement('article');
-      card.className = 'post-card';
-      card.style.animationDelay = i*.07+'s';
-      card.onclick = () => openPost(p.id);
-      card.innerHTML = `
-        <div class="card-img">${cardSvg(p.id, p.authorColor||'#8B5CF6')}</div>
-        <div class="card-body">
-          <span class="cat-badge">${p.category}</span>
-          <h2 class="card-title">${p.title}</h2>
-          <p class="card-excerpt">${p.excerpt}</p>
-          <div class="card-foot">
-            <span class="card-author">${p.author}</span>
-            <span class="card-info">${p.date||''} · ${p.readTime||'5 min'}</span>
-          </div>
-        </div>`;
-      grid.appendChild(card);
-    });
-  }
+function renderGrid(){
+  const all=getAllPosts().filter(p=>p.published);
+  const filtered=curFilter==='all'?all:all.filter(p=>p.category===curFilter);
+  const total=Math.max(1,Math.ceil(filtered.length/PER_PAGE));
+  if(curPage>total)curPage=1;
+  const slice=filtered.slice((curPage-1)*PER_PAGE,curPage*PER_PAGE);
+  const g=document.getElementById('blog-grid');
+  g.innerHTML='';
+  if(!slice.length){g.innerHTML='<div class="no-results"><p>No articles in this category yet.</p></div>';renderPagination(1);return;}
+  slice.forEach((p,i)=>{
+    const c=document.createElement('article');
+    c.className='post-card';
+    c.style.animationDelay=i*.07+'s';
+    c.onclick=()=>openPost(p.id);
+    c.innerHTML=`<div class="card-img">${cSvg(p.id,p.authorColor||'#8B5CF6')}</div>
+      <div class="card-body">
+        <span class="cat-badge">${p.category}</span>
+        <h2 class="card-title">${p.title}</h2>
+        <p class="card-excerpt">${p.excerpt}</p>
+        <div class="card-foot"><span class="card-author">${p.author}</span><span class="card-info">${p.date||''} · ${p.readTime||'5 min'}</span></div>
+      </div>`;
+    g.appendChild(c);
+  });
   renderPagination(total);
 }
 
-function renderPagination(total) {
-  const pag = document.getElementById('pagination');
-  pag.innerHTML = '';
-  if (total <= 1) return;
-  const prev = document.createElement('button');
-  prev.className = 'page-btn' + (currentPage===1?' disabled':'');
-  prev.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>';
-  prev.onclick = () => { if(currentPage>1){currentPage--;renderGrid();window.scrollTo({top:300,behavior:'smooth'});} };
-  pag.appendChild(prev);
-  for (let i=1;i<=total;i++) {
-    const btn = document.createElement('button');
-    btn.className = 'page-btn'+(i===currentPage?' active':'');
-    btn.textContent = i;
-    btn.onclick = () => { currentPage=i;renderGrid();window.scrollTo({top:300,behavior:'smooth'}); };
-    pag.appendChild(btn);
+function renderPagination(total){
+  const el=document.getElementById('pagination');
+  el.innerHTML='';
+  if(total<=1)return;
+  const prev=document.createElement('button');
+  prev.className='page-btn';prev.disabled=curPage===1;
+  prev.innerHTML='‹';
+  prev.onclick=()=>{curPage--;renderGrid();window.scrollTo({top:300,behavior:'smooth'});};
+  el.appendChild(prev);
+  for(let i=1;i<=total;i++){
+    const b=document.createElement('button');
+    b.className='page-btn'+(i===curPage?' active':'');
+    b.textContent=i;
+    b.onclick=()=>{curPage=i;renderGrid();window.scrollTo({top:300,behavior:'smooth'});};
+    el.appendChild(b);
   }
-  const next = document.createElement('button');
-  next.className = 'page-btn'+(currentPage===total?' disabled':'');
-  next.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>';
-  next.onclick = () => { if(currentPage<total){currentPage++;renderGrid();window.scrollTo({top:300,behavior:'smooth'});} };
-  pag.appendChild(next);
+  const next=document.createElement('button');
+  next.className='page-btn';next.disabled=curPage===total;
+  next.innerHTML='›';
+  next.onclick=()=>{curPage++;renderGrid();window.scrollTo({top:300,behavior:'smooth'});};
+  el.appendChild(next);
 }
 
-function renderSidebarPopular() {
-  const posts = getAllPosts().filter(p=>p.published!==false).slice(0,3);
-  document.getElementById('sw-popular').innerHTML = posts.map(p => `
+function renderPopular(){
+  const posts=getAllPosts().filter(p=>p.published).slice(0,3);
+  document.getElementById('sw-popular').innerHTML=posts.map(p=>`
     <div class="sw-post" onclick="openPost(${p.id})">
-      <div class="sw-thumb">${cardSvg(p.id, p.authorColor||'#8B5CF6')}</div>
-      <div class="sw-info"><div class="sw-ttl">${p.title}</div><div class="sw-dt">${p.date||''}</div></div>
+      <div class="sw-thumb">${cSvg(p.id,p.authorColor||'#8B5CF6')}</div>
+      <div><div class="sw-ttl">${p.title}</div><div class="sw-dt">${p.date||''}</div></div>
     </div>`).join('');
 }
 
-function filterPosts(cat, btnEl) {
-  currentFilter = cat;
-  currentPage = 1;
+function filterPosts(cat,btn){
+  curFilter=cat;curPage=1;
   document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-  if (btnEl) btnEl.classList.add('active');
+  if(btn)btn.classList.add('active');
   renderGrid();
 }
 
-function openPost(id) {
-  const post = getAllPosts().find(p=>p.id===id);
-  if (!post) return;
-  const root = document.getElementById('post-root');
-  const headings = [...(post.content||'').matchAll(/<h2>(.*?)<\/h2>/g)].map(m=>m[1]);
-  root.innerHTML = `
+function openPost(id){
+  const p=getAllPosts().find(x=>x.id===id);
+  if(!p)return;
+  const h=[...(p.content||'').matchAll(/<h2>(.*?)<\/h2>/g)].map(m=>m[1]);
+  document.getElementById('post-root').innerHTML=`
     <header class="post-hdr">
-      <span class="cat-badge">${post.category}</span>
-      <h1>${post.title}</h1>
-      ${post.subtitle?`<p class="sub">${post.subtitle}</p>`:''}
+      <span class="cat-badge">${p.category}</span>
+      <h1>${p.title}</h1>
+      ${p.subtitle?`<p class="sub">${p.subtitle}</p>`:''}
       <div class="post-hdr-meta">
-        <div class="author-av">${authorSvg(post.authorColor||'#8B5CF6',40)}</div>
-        <div><div class="meta-name">${post.author}</div><div class="meta-date">${post.date||''}</div></div>
+        <div class="auth-av" style="width:40px;height:40px">${aSvg(p.authorColor||'#8B5CF6',40)}</div>
+        <div><div class="meta-name">${p.author}</div><div class="meta-date">${p.date||''}</div></div>
         <div class="meta-div"></div>
-        <span class="read-time">${post.readTime||'5 min'} read</span>
+        <span class="read-time">${p.readTime||'5 min'} read</span>
       </div>
     </header>
-    <div class="post-hero"><div class="post-hero-img">${postSvg(post.id,post.authorColor||'#8B5CF6',1200,380)}</div></div>
+    <div class="post-hero"><div class="post-hero-img">${pSvg(p.id,p.authorColor||'#8B5CF6',1200,380)}</div></div>
     <div class="post-layout">
       <article class="post-content">
-        ${post.content||''}
-        <div class="post-tags">${(post.tags||[]).map(t=>`<span class="post-tag">${t}</span>`).join('')}</div>
+        ${p.content||''}
+        <div class="post-tags">${(p.tags||[]).map(t=>`<span class="post-tag">${t}</span>`).join('')}</div>
       </article>
       <aside class="post-sidebar">
-        ${headings.length?`<div class="sw" style="margin-bottom:16px"><div class="sw-title">In This Essay</div><ul class="toc-list">${headings.map(h=>`<li><a href="#">${h}</a></li>`).join('')}</ul></div>`:''}
-        <div class="sw"><div class="sw-title">Share</div><div class="share-btns"><button class="share-btn" onclick="sharePost('twitter','${post.title.replace(/'/g,"\\'")}')">Twitter</button><button class="share-btn" onclick="copyLink()">Copy Link</button></div></div>
+        ${h.length?`<div class="sw" style="margin-bottom:16px"><div class="sw-title">In This Essay</div><ul class="toc-list">${h.map(x=>`<li><a href="#">${x}</a></li>`).join('')}</ul></div>`:''}
+        <div class="sw"><div class="sw-title">Share</div><div class="share-btns"><button class="share-btn" onclick="sharePost('${p.title.replace(/'/g,"\\'")}')">Twitter</button><button class="share-btn" onclick="copyLink()">Copy Link</button></div></div>
       </aside>
     </div>`;
-  nav('post');
+  goPage('post');
   document.getElementById('nl-band').style.display='none';
-  document.addEventListener('scroll', updateRP);
+  document.addEventListener('scroll',scrollRP);
 }
 
-/* ==============================================
-   SVG ILLUSTRATIONS
-============================================== */
-const COLORS_LIST = ['#8B5CF6','#0D9488','#D97706','#c0392b','#2980b9','#27ae60','#e91e63','#FF5722'];
-function postSvg(id, color, w, h) {
-  const bg1 = '#0f0e0d', bg2 = '#2a1a14';
-  return `<svg viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
-    <defs><linearGradient id="pg${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="${bg1}"/><stop offset="100%" stop-color="${bg2}"/></linearGradient></defs>
-    <rect width="${w}" height="${h}" fill="url(#pg${id})"/>
-    <circle cx="${w/2}" cy="${h/2}" r="${Math.min(w,h)*.42}" fill="none" stroke="${color}" stroke-width="0.8" opacity="0.25"/>
-    <circle cx="${w/2}" cy="${h/2}" r="${Math.min(w,h)*.28}" fill="none" stroke="${color}" stroke-width="0.8" opacity="0.18"/>
-    <circle cx="${w/2}" cy="${h/2}" r="3" fill="${color}" opacity="0.7"/>
-    <line x1="${w*.15}" y1="${h/2}" x2="${w*.85}" y2="${h/2}" stroke="${color}" stroke-width="0.5" opacity="0.2"/>
-    <line x1="${w/2}" y1="${h*.1}" x2="${w/2}" y2="${h*.9}" stroke="${color}" stroke-width="0.5" opacity="0.2"/>
-  </svg>`;
-}
-function cardSvg(id, color) {
-  return `<svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%" preserveAspectRatio="xMidYMid slice">
-    <rect width="400" height="225" fill="${color}22"/>
-    <circle cx="200" cy="112" r="88" fill="none" stroke="${color}" stroke-width="1" opacity="0.3"/>
-    <circle cx="200" cy="112" r="52" fill="none" stroke="${color}" stroke-width="1" opacity="0.2"/>
-    <circle cx="200" cy="112" r="3" fill="${color}" opacity="0.6"/>
-    <line x1="110" y1="112" x2="290" y2="112" stroke="${color}" stroke-width="0.7" opacity="0.2"/>
-    <line x1="200" y1="22" x2="200" y2="202" stroke="${color}" stroke-width="0.7" opacity="0.2"/>
-  </svg>`;
-}
-function authorSvg(color, size) {
-  return `<svg viewBox="0 0 ${size} ${size}"><rect width="${size}" height="${size}" rx="${size/2}" fill="${color}"/><circle cx="${size/2}" cy="${size*.38}" r="${size*.22}" fill="rgba(255,255,255,.4)"/><ellipse cx="${size/2}" cy="${size*.88}" rx="${size*.38}" ry="${size*.28}" fill="rgba(255,255,255,.3)"/></svg>`;
-}
+/* ============================================
+   SVG HELPERS
+============================================ */
+function pSvg(id,color,w,h){return`<svg viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%"><defs><linearGradient id="g${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0f0e0d"/><stop offset="100%" stop-color="#2a1a14"/></linearGradient></defs><rect width="${w}" height="${h}" fill="url(#g${id})"/><circle cx="${w/2}" cy="${h/2}" r="${Math.min(w,h)*.42}" fill="none" stroke="${color}" stroke-width="0.8" opacity="0.25"/><circle cx="${w/2}" cy="${h/2}" r="${Math.min(w,h)*.28}" fill="none" stroke="${color}" stroke-width="0.8" opacity="0.18"/><circle cx="${w/2}" cy="${h/2}" r="3" fill="${color}" opacity="0.7"/><line x1="${w*.15}" y1="${h/2}" x2="${w*.85}" y2="${h/2}" stroke="${color}" stroke-width="0.5" opacity="0.2"/><line x1="${w/2}" y1="${h*.1}" x2="${w/2}" y2="${h*.9}" stroke="${color}" stroke-width="0.5" opacity="0.2"/></svg>`;}
+function cSvg(id,color){return`<svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%" preserveAspectRatio="xMidYMid slice"><rect width="400" height="225" fill="${color}22"/><circle cx="200" cy="112" r="88" fill="none" stroke="${color}" stroke-width="1" opacity="0.3"/><circle cx="200" cy="112" r="52" fill="none" stroke="${color}" stroke-width="1" opacity="0.2"/><circle cx="200" cy="112" r="3" fill="${color}" opacity="0.6"/><line x1="110" y1="112" x2="290" y2="112" stroke="${color}" stroke-width="0.7" opacity="0.2"/><line x1="200" y1="22" x2="200" y2="202" stroke="${color}" stroke-width="0.7" opacity="0.2"/></svg>`;}
+function aSvg(color,size){return`<svg viewBox="0 0 ${size} ${size}"><rect width="${size}" height="${size}" rx="${size/2}" fill="${color}"/><circle cx="${size/2}" cy="${size*.38}" r="${size*.22}" fill="rgba(255,255,255,.4)"/><ellipse cx="${size/2}" cy="${size*.88}" rx="${size*.38}" ry="${size*.28}" fill="rgba(255,255,255,.3)"/></svg>`;}
 
-/* ==============================================
+/* ============================================
    NAVIGATION
-============================================== */
-function nav(page) {
+============================================ */
+function goPage(name){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-links a,.mobile-nav a').forEach(a=>a.classList.remove('active'));
-  document.getElementById('page-'+page).classList.add('active');
-  const nl = document.getElementById('nl-'+page);
-  if (nl) nl.classList.add('active');
-  document.getElementById('nl-band').style.display = page==='post'?'none':'';
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  const nl=document.getElementById('nl-'+name);
+  if(nl)nl.classList.add('active');
+  document.getElementById('nl-band').style.display=name==='post'?'none':'';
   window.scrollTo({top:0,behavior:'smooth'});
-  updateRP(0);
-  document.removeEventListener('scroll', updateRP);
-  if (page==='home') renderHome();
+  document.getElementById('rp').style.width='0';
+  document.removeEventListener('scroll',scrollRP);
+  if(name==='home')renderHome();
 }
 
-/* ==============================================
+/* ============================================
    SEARCH
-============================================== */
-function openSrch() { document.getElementById('so').classList.add('open'); setTimeout(()=>document.getElementById('srch').focus(),80); }
-function closeSrch() { document.getElementById('so').classList.remove('open'); document.getElementById('srch').value=''; document.getElementById('sr').style.display='none'; }
-document.getElementById('so').addEventListener('click',e=>{if(e.target===document.getElementById('so'))closeSrch();});
-document.getElementById('srch').addEventListener('input',e=>{
-  const q=e.target.value.trim().toLowerCase(), sr=document.getElementById('sr');
-  if (!q){sr.style.display='none';return;}
-  const res=getAllPosts().filter(p=>p.published!==false&&(p.title.toLowerCase().includes(q)||p.excerpt.toLowerCase().includes(q)||(p.category||'').toLowerCase().includes(q)));
-  sr.style.display='block';
-  sr.innerHTML=res.length?res.map(p=>`<div class="srch-item" onclick="closeSrch();openPost(${p.id})"><div class="srch-title">${p.title}</div><div class="srch-meta">${p.category} · ${p.date||''}</div></div>`).join('') : '<div class="srch-empty">No articles found.</div>';
+============================================ */
+function openSrch(){document.getElementById('srch-overlay').classList.add('visible');setTimeout(()=>document.getElementById('srch-inp').focus(),80);}
+function closeSrch(){document.getElementById('srch-overlay').classList.remove('visible');document.getElementById('srch-inp').value='';document.getElementById('srch-res').style.display='none';}
+document.getElementById('srch-overlay').addEventListener('click',function(e){if(e.target===this)closeSrch();});
+document.getElementById('srch-inp').addEventListener('input',function(){
+  const q=this.value.trim().toLowerCase(),r=document.getElementById('srch-res');
+  if(!q){r.style.display='none';return;}
+  const res=getAllPosts().filter(p=>p.published&&(p.title.toLowerCase().includes(q)||p.excerpt.toLowerCase().includes(q)||(p.category||'').toLowerCase().includes(q)));
+  r.style.display='block';
+  r.innerHTML=res.length?res.map(p=>`<div class="srch-item" onclick="closeSrch();openPost(${p.id})"><div class="srch-ttl">${p.title}</div><div class="srch-meta">${p.category} · ${p.date||''}</div></div>`).join(''):'<div class="srch-empty">No articles found.</div>';
 });
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSrch();});
 
-/* ==============================================
+/* ============================================
    THEME
-============================================== */
+============================================ */
 function toggleTheme(){
-  const dark=document.documentElement.getAttribute('data-theme')==='dark';
-  document.documentElement.setAttribute('data-theme',dark?'light':'dark');
+  const d=document.documentElement;
+  const dark=d.getAttribute('data-theme')==='dark';
+  d.setAttribute('data-theme',dark?'light':'dark');
   localStorage.setItem('theme',dark?'light':'dark');
 }
 (()=>{const t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);})();
 
-/* ==============================================
+/* ============================================
    MOBILE NAV
-============================================== */
+============================================ */
 function toggleMnav(){document.getElementById('mnav').classList.toggle('open');document.getElementById('hbg').classList.toggle('open');}
 function closeMnav(){document.getElementById('mnav').classList.remove('open');document.getElementById('hbg').classList.remove('open');}
 
-/* ==============================================
+/* ============================================
    READING PROGRESS
-============================================== */
-function updateRP(){
+============================================ */
+function scrollRP(){
   const sc=window.scrollY,dh=document.documentElement.scrollHeight-window.innerHeight;
   document.getElementById('rp').style.width=(dh>0?sc/dh*100:0)+'%';
 }
 
-/* ==============================================
+/* ============================================
    UTILS
-============================================== */
-function sharePost(p,t){if(p==='twitter')window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(t));showToast('Sharing…');}
-function copyLink(){navigator.clipboard.writeText(window.location.href).then(()=>showToast('Link copied!'));}
-function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
-function submitContact(e){e.preventDefault();document.querySelector('#cf-wrap form').style.display='none';document.getElementById('form-ok').classList.add('show');showToast('Message sent!');}
-function subscribeNl(e){e.preventDefault();e.target.innerHTML='<div style="padding:13px 0;font-family:var(--ff-mono);font-size:.78rem;color:var(--paper);opacity:.8;letter-spacing:.05em">✓ Subscribed! Thank you.</div>';showToast('Subscribed!');}
+============================================ */
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
+function sharePost(title){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(title));toast('Sharing…');}
+function copyLink(){navigator.clipboard.writeText(window.location.href).then(()=>toast('Link copied!'));}
+function submitContact(e){e.preventDefault();document.getElementById('contact-form').style.display='none';document.getElementById('form-ok').classList.add('show');toast('Message sent!');}
+function subNl(e){e.preventDefault();e.target.innerHTML='<div style="padding:13px 0;font-family:var(--fm);font-size:.78rem;opacity:.8">✓ Subscribed!</div>';toast('Subscribed!');}
 
-/* ==============================================
-   ===== ADMIN SYSTEM =====
-============================================== */
-function openAdminLogin(){document.getElementById('admin-login').classList.add('show');setTimeout(()=>document.getElementById('al-user').focus(),100);}
-function closeAdminLogin(){document.getElementById('admin-login').classList.remove('show');}
+/* ============================================
+   ADMIN — LOGIN
+============================================ */
+function openAdmLogin(){
+  document.getElementById('adm-modal').classList.add('visible');
+  setTimeout(()=>document.getElementById('al-user').focus(),100);
+}
+function closeAdmLogin(){
+  document.getElementById('adm-modal').classList.remove('visible');
+}
+document.getElementById('adm-modal').addEventListener('click',function(e){
+  if(e.target===this)closeAdmLogin();
+});
+document.getElementById('al-pass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+document.getElementById('al-user').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('al-pass').focus();});
 
-function doAdminLogin(){
+function doLogin(){
   const u=document.getElementById('al-user').value.trim();
-  const p=document.getElementById('al-pass').value.trim();
+  const p=document.getElementById('al-pass').value;
   const err=document.getElementById('al-err');
-  if (AUTHORS[u] && AUTHORS[u].pass===p) {
-    loggedInUser=u;
-    closeAdminLogin();
-    document.getElementById('adm-user-name').textContent=AUTHORS[u].displayName;
-    document.getElementById('admin-panel').classList.add('show');
-    admTab('posts',document.querySelectorAll('.adm-tab')[0]);
+  if(AUTHORS[u]&&AUTHORS[u].pass===p){
+    loggedUser=u;
+    closeAdmLogin();
+    document.getElementById('adm-user-name').textContent=AUTHORS[u].name;
+    document.getElementById('adm-panel').classList.add('visible');
+    switchTab('posts');
     renderAdmPosts();
   } else {
-    err.textContent='Invalid username or password.';
-    setTimeout(()=>{err.textContent='';},3000);
+    err.textContent='Wrong username or password.';
+    setTimeout(()=>err.textContent='',3000);
   }
 }
 
 function doLogout(){
-  loggedInUser=null;
-  document.getElementById('admin-panel').classList.remove('show');
-  showToast('Signed out.');
+  loggedUser=null;
+  document.getElementById('adm-panel').classList.remove('visible');
+  toast('Signed out.');
 }
 
-function closeAdminPanel(){
-  document.getElementById('admin-panel').classList.remove('show');
+function closeAdmPanel(){
+  document.getElementById('adm-panel').classList.remove('visible');
 }
 
-/* tabs */
-function admTab(name,el){
-  document.querySelectorAll('.adm-panel').forEach(p=>p.classList.remove('active'));
+/* ============================================
+   GITHUB SETTINGS
+============================================ */
+function toggleGhFields(){
+  const f=document.getElementById('gh-fields');
+  const c=document.getElementById('gh-chev');
+  const open=f.classList.toggle('open');
+  c.style.transform=open?'rotate(180deg)':'rotate(0deg)';
+  if(open){
+    document.getElementById('gh-user').value=localStorage.getItem('gh_user')||'';
+    document.getElementById('gh-repo').value=localStorage.getItem('gh_repo')||'';
+    document.getElementById('gh-token').value=localStorage.getItem('gh_token')||'';
+  }
+}
+
+function saveGhSettings(){
+  const u=document.getElementById('gh-user').value.trim();
+  const r=document.getElementById('gh-repo').value.trim();
+  const t=document.getElementById('gh-token').value.trim();
+  if(!u||!r||!t){toast('⚠️ Fill all three GitHub fields');return;}
+  localStorage.setItem('gh_user',u);
+  localStorage.setItem('gh_repo',r);
+  localStorage.setItem('gh_token',t);
+  toast('✓ GitHub settings saved!');
+  document.getElementById('gh-fields').classList.remove('open');
+  document.getElementById('gh-chev').style.transform='rotate(0deg)';
+}
+
+function getGhSettings(){return{user:localStorage.getItem('gh_user')||'',repo:localStorage.getItem('gh_repo')||'',token:localStorage.getItem('gh_token')||''};}
+
+/* ============================================
+   ADMIN — TABS
+============================================ */
+function switchTab(name){
+  document.querySelectorAll('.adm-view').forEach(v=>v.classList.remove('active'));
   document.querySelectorAll('.adm-tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('adm-'+name).classList.add('active');
-  if(el)el.classList.add('active');
-  if(name==='posts')renderAdmPosts();
+  document.getElementById('view-'+name).classList.add('active');
+  document.getElementById('tab-'+name).classList.add('active');
 }
 
-/* render posts list */
+/* ============================================
+   ADMIN — POSTS LIST
+============================================ */
 function renderAdmPosts(){
-  const stored=getStoredPosts();
-  const all=[...SAMPLE_POSTS,...stored];
-  document.getElementById('adm-post-count').textContent=all.length;
-  const list=document.getElementById('adm-post-list');
+  const all=[...SAMPLE,...getStored()];
+  document.getElementById('post-count').textContent=all.length;
+  const list=document.getElementById('post-list');
   if(!all.length){
-    list.innerHTML=`<div class="adm-empty"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><p>No posts yet. Write your first post!</p></div>`;
+    list.innerHTML='<div class="adm-empty"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><p>No posts yet.</p></div>';
     return;
   }
   list.innerHTML=all.map(p=>`
-    <div class="adm-post-item">
-      <div class="adm-post-info">
-        <div class="adm-post-ttl">${p.title}</div>
-        <div class="adm-post-meta">${p.category} · ${p.author} · ${p.date||'Draft'}</div>
+    <div class="adm-item">
+      <div class="adm-item-info">
+        <div class="adm-item-title">${p.title}</div>
+        <div class="adm-item-meta">${p.category} · ${p.author} · ${p.date||'Draft'}</div>
       </div>
-      <span class="adm-post-status ${p.published!==false?'published':'draft'}">${p.published!==false?'Published':'Draft'}</span>
-      <div class="adm-act-btns">
-        <div class="adm-act edit" onclick="admEditPost(${p.id})" title="Edit">
+      <span class="adm-status ${p.published?'pub':'dft'}">${p.published?'Published':'Draft'}</span>
+      <div class="adm-actions">
+        <button class="adm-act edit" onclick="editPost(${p.id})" title="Edit">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-        </div>
-        <div class="adm-act del" onclick="promptAdmDelete(${p.id},'${p.title.replace(/'/g,"\\'")}')" title="Delete">
+        </button>
+        <button class="adm-act del" onclick="promptDel(${p.id},'${p.title.replace(/'/g,"\\'")}')" title="Delete">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
-        </div>
+        </button>
       </div>
     </div>`).join('');
 }
 
-/* new post */
-function newAdmPost(){
-  admEditingId=null; admIsPublished=false;
-  document.getElementById('af-title').value='';
-  document.getElementById('af-subtitle').value='';
-  document.getElementById('af-excerpt').value='';
-  document.getElementById('af-content').value='';
+/* ============================================
+   ADMIN — EDITOR
+============================================ */
+function newPost(){
+  editingId=null;isPublished=false;
+  ['af-title','af-subtitle','af-excerpt','af-content','af-tags'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('af-cat').value='';
   document.getElementById('af-rt').value='';
-  document.getElementById('af-tags').value='';
-  updateAdmToggle();
+  updateToggle();
 }
 
-/* edit existing post */
-function admEditPost(id){
-  const all=[...SAMPLE_POSTS,...getStoredPosts()];
+function editPost(id){
+  const all=[...SAMPLE,...getStored()];
   const p=all.find(x=>x.id===id);
   if(!p)return;
-  admEditingId=id; admIsPublished=p.published!==false;
+  editingId=id;isPublished=!!p.published;
   document.getElementById('af-title').value=p.title||'';
   document.getElementById('af-subtitle').value=p.subtitle||'';
   document.getElementById('af-excerpt').value=p.excerpt||'';
@@ -1187,110 +1131,149 @@ function admEditPost(id){
   document.getElementById('af-cat').value=p.category||'';
   document.getElementById('af-rt').value=(p.readTime||'').replace(' min','');
   document.getElementById('af-tags').value=(p.tags||[]).join(', ');
-  updateAdmToggle();
-  admTab('editor',document.querySelectorAll('.adm-tab')[1]);
+  updateToggle();
+  switchTab('editor');
 }
 
-/* save post */
-function saveAdmPost(){
+function savePost(){
   const title=document.getElementById('af-title').value.trim();
   const excerpt=document.getElementById('af-excerpt').value.trim();
   const content=document.getElementById('af-content').value.trim();
   const cat=document.getElementById('af-cat').value;
-  if(!title){showAdmToast('Title is required');return;}
-  if(!excerpt){showAdmToast('Excerpt is required');return;}
-  if(!content){showAdmToast('Content is required');return;}
-  if(!cat){showAdmToast('Please select a category');return;}
+  if(!title){toast('⚠️ Title is required');return;}
+  if(!excerpt){toast('⚠️ Excerpt is required');return;}
+  if(!content){toast('⚠️ Content is required');return;}
+  if(!cat){toast('⚠️ Please select a category');return;}
 
   const rt=document.getElementById('af-rt').value.trim();
-  const tagsRaw=document.getElementById('af-tags').value;
-  const tags=tagsRaw.split(',').map(t=>t.trim()).filter(Boolean);
-  const now=new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
-  const authorName=AUTHORS[loggedInUser]?.displayName||'Author';
-  const authorColor=loggedInUser==='author1'?'#8B5CF6':'#0D9488';
+  const tags=document.getElementById('af-tags').value.split(',').map(t=>t.trim()).filter(Boolean);
+  const date=new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  const author=AUTHORS[loggedUser]?.name||'Author';
+  const color=AUTHORS[loggedUser]?.color||'#8B5CF6';
+  const subtitle=document.getElementById('af-subtitle').value.trim();
 
-  let stored=getStoredPosts();
-  if(admEditingId!==null){
-    // Update in stored (if it exists there), else add override
-    const idx=stored.findIndex(p=>p.id===admEditingId);
-    const updated={id:admEditingId,title,subtitle:document.getElementById('af-subtitle').value.trim(),excerpt,content,category:cat,author:authorName,authorColor,date:now,readTime:rt?rt+' min':'5 min',tags,published:admIsPublished};
-    if(idx!==-1) stored[idx]=updated; else stored.push(updated);
+  let stored=getStored();
+  if(editingId!==null){
+    const idx=stored.findIndex(p=>p.id===editingId);
+    const upd={id:editingId,title,subtitle,excerpt,content,category:cat,author,authorColor:color,date,readTime:rt?rt+' min':'5 min',tags,published:isPublished};
+    if(idx!==-1)stored[idx]=upd;else stored.push(upd);
   } else {
-    const newId=Date.now();
-    stored.push({id:newId,title,subtitle:document.getElementById('af-subtitle').value.trim(),excerpt,content,category:cat,author:authorName,authorColor,date:now,readTime:rt?rt+' min':'5 min',tags,published:admIsPublished});
+    stored.push({id:Date.now(),title,subtitle,excerpt,content,category:cat,author,authorColor:color,date,readTime:rt?rt+' min':'5 min',tags,published:isPublished});
   }
-  saveStoredPosts(stored);
+  setStored(stored);
   renderAdmPosts();
-  admTab('posts',document.querySelectorAll('.adm-tab')[0]);
-  showToast(admEditingId?'Post updated! ✓':'Post published! ✓');
+  switchTab('posts');
+  toast(editingId?'✓ Post updated!':'✓ Post saved!');
+  renderHome();
 }
 
-function toggleAdmStatus(){admIsPublished=!admIsPublished;updateAdmToggle();}
-function updateAdmToggle(){
-  const t=document.getElementById('adm-toggle');
-  const l=document.getElementById('adm-status-lbl');
-  admIsPublished?t.classList.add('on'):t.classList.remove('on');
-  l.textContent=admIsPublished?'Published':'Draft';
+function togglePub(){isPublished=!isPublished;updateToggle();}
+function updateToggle(){
+  document.getElementById('pub-toggle').className='toggle'+(isPublished?' on':'');
+  document.getElementById('status-lbl').textContent=isPublished?'Published':'Draft';
 }
 
-/* toolbar helpers */
-function admWrap(o,c){const t=document.getElementById('af-content');const s=t.selectionStart,e=t.selectionEnd;const sel=t.value.substring(s,e);t.value=t.value.substring(0,s)+o+sel+c+t.value.substring(e);t.focus();t.setSelectionRange(s+o.length,e+o.length);}
-function admInsert(block){const t=document.getElementById('af-content');const p=t.selectionEnd;const before=t.value.substring(0,p);const nl=before.length>0&&!before.endsWith('\n')?'\n':'';t.value=before+nl+block+'\n'+t.value.substring(p);t.focus();}
+function wrap(o,c){const t=document.getElementById('af-content');const s=t.selectionStart,e=t.selectionEnd;const sel=t.value.substring(s,e);t.value=t.value.substring(0,s)+o+sel+c+t.value.substring(e);t.focus();t.setSelectionRange(s+o.length,e+o.length);}
+function ins(block){const t=document.getElementById('af-content');const p=t.selectionEnd;const b=t.value.substring(0,p);t.value=b+(b&&!b.endsWith('\n')?'\n':'')+block+'\n'+t.value.substring(p);t.focus();}
 
-/* delete */
-function promptAdmDelete(id,title){admDeleteTarget=id;document.getElementById('adm-del-title').textContent=title;document.getElementById('adm-confirm').classList.add('show');}
-function closeAdmConfirm(){document.getElementById('adm-confirm').classList.remove('show');}
-function confirmAdmDelete(){
-  let stored=getStoredPosts();
-  stored=stored.filter(p=>p.id!==admDeleteTarget);
-  saveStoredPosts(stored);
-  closeAdmConfirm();
+/* ============================================
+   ADMIN — DELETE
+============================================ */
+function promptDel(id,title){
+  delTarget=id;
+  document.getElementById('del-title-txt').textContent=title;
+  document.getElementById('del-confirm').classList.add('visible');
+}
+function closeDel(){document.getElementById('del-confirm').classList.remove('visible');}
+function confirmDel(){
+  let s=getStored();
+  s=s.filter(p=>p.id!==delTarget);
+  setStored(s);
+  closeDel();
   renderAdmPosts();
   renderHome();
-  showToast('Post deleted.');
+  toast('Post deleted.');
+}
+document.getElementById('del-confirm').addEventListener('click',function(e){if(e.target===this)closeDel();});
+
+/* ============================================
+   ADMIN — EXPORT / PUBLISH
+============================================ */
+function initExport(){
+  const {user,repo}=getGhSettings();
+  const dot=document.getElementById('gh-dot');
+  const txt=document.getElementById('gh-status-txt');
+  if(user&&repo&&localStorage.getItem('gh_token')){
+    dot.style.background='#4cd9a0';txt.style.color='#4cd9a0';
+    txt.textContent='Connected: '+user+'/'+repo;
+  } else {
+    dot.style.background='#fbbf24';txt.style.color='#fbbf24';
+    txt.textContent='Not configured — open login ⚙️ GitHub Settings.';
+  }
+  const log=document.getElementById('pub-log');
+  log.style.display='none';log.innerHTML='';
+  const btn=document.getElementById('pub-btn');
+  btn.disabled=false;btn.textContent='🚀 Publish Live to GitHub Pages';
+  btn.style.background='#4cd9a0';btn.style.color='#0d0d0f';
 }
 
-function showAdmToast(m){showToast('⚠️ '+m);}
-
-/* ==============================================
-   EXPORT — generates full self-contained HTML
-============================================== */
 function getFullHtml(){
-  const stored=getStoredPosts();
-  // Embed stored posts as a JS variable in the exported file
-  const storedJson=JSON.stringify(stored);
-  // Replace the localStorage call with pre-seeded data
-  const thisHtml=document.documentElement.outerHTML;
-  // Inject stored posts data by replacing the getStoredPosts function
-  const exportHtml=thisHtml.replace(
-    "function getStoredPosts(){\n  try { return JSON.parse(localStorage.getItem('meridian_posts') || '[]'); }\n  catch(e) { return []; }\n}",
-    `function getStoredPosts(){\n  // Pre-seeded from export\n  const seeded=${storedJson};\n  try {\n    const ls=JSON.parse(localStorage.getItem('meridian_posts')||'[]');\n    const ids=new Set(ls.map(p=>p.id));\n    return [...seeded.filter(p=>!ids.has(p.id)),...ls];\n  } catch(e){return seeded;}\n}`
+  const stored=getStored();
+  const j=JSON.stringify(stored);
+  return document.documentElement.outerHTML.replace(
+    "function getStored(){\n  try{return JSON.parse(localStorage.getItem('m_posts')||'[]');}catch(e){return[];}\n}",
+    "function getStored(){\n  const seed="+j+";\n  try{const ls=JSON.parse(localStorage.getItem('m_posts')||'[]');const ids=new Set(ls.map(p=>p.id));return[...seed.filter(p=>!ids.has(p.id)),...ls];}catch(e){return seed;}\n}"
   );
-  return exportHtml;
 }
 
-function copyFullHtml(){
-  const html=getFullHtml();
-  navigator.clipboard.writeText(html).then(()=>showToast('✓ HTML copied! Now paste it into GitHub.'));
+function copyHtml(){navigator.clipboard.writeText(getFullHtml()).then(()=>toast('✓ HTML copied!'));}
+function dlHtml(){
+  const b=new Blob([getFullHtml()],{type:'text/html'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='index.html';a.click();
+  toast('⬇️ Downloaded!');
 }
 
-function downloadHtml(){
-  const html=getFullHtml();
-  const blob=new Blob([html],{type:'text/html'});
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);
-  a.download='index.html';
-  a.click();
-  showToast('⬇️ index.html downloaded!');
+async function publishToGH(){
+  const {user,repo,token}=getGhSettings();
+  const btn=document.getElementById('pub-btn');
+  const log=document.getElementById('pub-log');
+  if(!user||!repo||!token){toast('⚠️ Set up GitHub settings first (login → ⚙️)');return;}
+
+  btn.disabled=true;
+  btn.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation:spin 1s linear infinite;display:inline-block"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Publishing…';
+  btn.style.background='#26262e';btn.style.color='#9896aa';
+  log.style.display='block';log.innerHTML='⏳ Generating updated file…';
+
+  try{
+    const html=getFullHtml();
+    log.innerHTML+='<br>📡 Fetching current file SHA from GitHub…';
+    const api=`https://api.github.com/repos/${user}/${repo}/contents/index.html`;
+    const hdrs={'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
+    const get=await fetch(api,{headers:hdrs});
+    if(!get.ok){const e=await get.json();throw new Error(e.message);}
+    const {sha}=await get.json();
+    log.innerHTML+='<br>✅ File found (SHA: '+sha.slice(0,7)+'…)';
+    log.innerHTML+='<br>🔧 Encoding and pushing…';
+    const b64=btoa(unescape(encodeURIComponent(html)));
+    const put=await fetch(api,{method:'PUT',headers:{...hdrs,'Content-Type':'application/json'},body:JSON.stringify({message:'Blog update — '+new Date().toLocaleString(),content:b64,sha})});
+    if(!put.ok){const e=await put.json();throw new Error(e.message);}
+    log.innerHTML+='<br>✅ <strong style="color:#4cd9a0">Published successfully!</strong>';
+    log.innerHTML+='<br>🌐 Live at: <a href="https://'+user+'.github.io" target="_blank" style="color:#a07cff">https://'+user+'.github.io</a> in ~60 seconds';
+    btn.innerHTML='✅ Published!';btn.style.background='#4cd9a0';btn.style.color='#0d0d0f';
+    toast('🚀 Live on GitHub Pages!');
+  }catch(err){
+    log.innerHTML+='<br>❌ <strong style="color:#fc5c7c">Error: '+err.message+'</strong>';
+    log.innerHTML+='<br><span style="color:#5a5870">Check your token has repo permission and username/repo are correct.</span>';
+    btn.innerHTML='❌ Failed — Try Again';btn.style.background='#fc5c7c18';btn.style.color='#fc5c7c';
+    toast('❌ Publish failed');
+  }finally{
+    btn.disabled=false;
+  }
 }
 
-function renderExport(){
-  // just ensure panel shows
-}
-
-/* ==============================================
+/* ============================================
    INIT
-============================================== */
+============================================ */
 renderHome();
 </script>
 </body>
