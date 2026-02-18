@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<html lang="en" data-theme="light"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Meridian — A Journal of Ideas</title>
-<meta name="description" content="A curated journal exploring technology, culture, design, and the ideas shaping our world."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<meta name="description" content="A curated journal exploring technology, culture, design, and the ideas shaping our world.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <style>
 :root{
   --ink:#0f0e0d;--ink2:#3a3633;--ink3:#7a746e;
@@ -438,15 +436,15 @@ textarea.adm-fc{resize:vertical;line-height:1.7;min-height:80px}
 <body>
 
 <div class="rp" id="rp"></div>
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast">✓ Post updated!</div>
 
 <!-- SEARCH -->
 <div class="srch-overlay" id="srch-overlay">
   <div class="srch-box">
     <div class="srch-wrap">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input type="text" id="srch-inp" placeholder="Search articles…" autocomplete="off"/>
-      <button onclick="closeSrch()" style="color:var(--ink3);padding:2px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+      <input type="text" id="srch-inp" placeholder="Search articles…" autocomplete="off">
+      <button onclick="closeSrch()" style="color:var(--ink3);padding:2px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
     </div>
     <div class="srch-res" id="srch-res"></div>
   </div>
@@ -462,10 +460,10 @@ textarea.adm-fc{resize:vertical;line-height:1.7;min-height:80px}
       <a id="nl-contact" onclick="goPage('contact')">Contact</a>
     </nav>
     <div class="nav-actions">
-      <button class="icon-btn" onclick="openSrch()"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+      <button class="icon-btn" onclick="openSrch()"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg></button>
       <button class="icon-btn" onclick="toggleTheme()">
-        <svg class="sun-i" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-        <svg class="moon-i" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="sun-i" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
+        <svg class="moon-i" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
       </button>
       <button class="hamburger" id="hbg" onclick="toggleMnav()"><span></span><span></span><span></span></button>
     </div>
@@ -486,7 +484,22 @@ textarea.adm-fc{resize:vertical;line-height:1.7;min-height:80px}
     <h1>Where <em>ideas</em> find<br>their form.</h1>
     <p class="masthead-sub">Essays on technology, culture, design, and the forces shaping how we live.</p>
   </section>
-  <section class="featured-sec" id="featured-sec"></section>
+  <section class="featured-sec" id="featured-sec">
+    <article class="feat-card" onclick="openPost(1)">
+      <div class="feat-img"><svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0f0e0d"></stop><stop offset="100%" stop-color="#2a1a14"></stop></linearGradient></defs><rect width="600" height="400" fill="url(#g1)"></rect><circle cx="300" cy="200" r="168" fill="none" stroke="#8B5CF6" stroke-width="0.8" opacity="0.25"></circle><circle cx="300" cy="200" r="112.00000000000001" fill="none" stroke="#8B5CF6" stroke-width="0.8" opacity="0.18"></circle><circle cx="300" cy="200" r="3" fill="#8B5CF6" opacity="0.7"></circle><line x1="90" y1="200" x2="510" y2="200" stroke="#8B5CF6" stroke-width="0.5" opacity="0.2"></line><line x1="300" y1="40" x2="300" y2="360" stroke="#8B5CF6" stroke-width="0.5" opacity="0.2"></line></svg></div>
+      <div class="feat-body">
+        <span class="cat-badge">Technology</span>
+        <h2>The Intelligence We Invited: On Living With Artificial Minds</h2>
+        <p class="excerpt">We spent decades imagining AI as something alien. But the AI that arrived came through our own words, our habits of thought, our accumulated culture.</p>
+        <div class="post-meta">
+          <div class="auth-av"><svg viewBox="0 0 34 34"><rect width="34" height="34" rx="17" fill="#8B5CF6"></rect><circle cx="17" cy="12.92" r="7.48" fill="rgba(255,255,255,.4)"></circle><ellipse cx="17" cy="29.92" rx="12.92" ry="9.520000000000001" fill="rgba(255,255,255,.3)"></ellipse></svg></div>
+          <div><div class="meta-name">Elena Vasquez</div><div class="meta-date">Feb 14, 2026</div></div>
+          <div class="meta-div"></div>
+          <span class="read-time">12 min</span>
+          <div class="read-arrow">Read →</div>
+        </div>
+      </div>
+    </article></section>
   <div class="filter-bar">
     <span class="filter-lbl">Filter:</span>
     <button class="filter-btn active" onclick="filterPosts('all',this)">All</button>
@@ -498,11 +511,47 @@ textarea.adm-fc{resize:vertical;line-height:1.7;min-height:80px}
   </div>
   <div class="content-wrap">
     <div>
-      <div class="blog-grid" id="blog-grid"></div>
+      <div class="blog-grid" id="blog-grid"><article class="post-card" style="animation-delay: 0s;"><div class="card-img"><svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%" preserveAspectRatio="xMidYMid slice"><rect width="400" height="225" fill="#8B5CF622"></rect><circle cx="200" cy="112" r="88" fill="none" stroke="#8B5CF6" stroke-width="1" opacity="0.3"></circle><circle cx="200" cy="112" r="52" fill="none" stroke="#8B5CF6" stroke-width="1" opacity="0.2"></circle><circle cx="200" cy="112" r="3" fill="#8B5CF6" opacity="0.6"></circle><line x1="110" y1="112" x2="290" y2="112" stroke="#8B5CF6" stroke-width="0.7" opacity="0.2"></line><line x1="200" y1="22" x2="200" y2="202" stroke="#8B5CF6" stroke-width="0.7" opacity="0.2"></line></svg></div>
+      <div class="card-body">
+        <span class="cat-badge">Technology</span>
+        <h2 class="card-title">The Intelligence We Invited: On Living With Artificial Minds</h2>
+        <p class="card-excerpt">We spent decades imagining AI as something alien. But the AI that arrived came through our own words, our habits of thought, our accumulated culture.</p>
+        <div class="card-foot"><span class="card-author">Elena Vasquez</span><span class="card-info">Feb 14, 2026 · 12 min</span></div>
+      </div></article><article class="post-card" style="animation-delay: 0.07s;"><div class="card-img"><svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%" preserveAspectRatio="xMidYMid slice"><rect width="400" height="225" fill="#0D948822"></rect><circle cx="200" cy="112" r="88" fill="none" stroke="#0D9488" stroke-width="1" opacity="0.3"></circle><circle cx="200" cy="112" r="52" fill="none" stroke="#0D9488" stroke-width="1" opacity="0.2"></circle><circle cx="200" cy="112" r="3" fill="#0D9488" opacity="0.6"></circle><line x1="110" y1="112" x2="290" y2="112" stroke="#0D9488" stroke-width="0.7" opacity="0.2"></line><line x1="200" y1="22" x2="200" y2="202" stroke="#0D9488" stroke-width="0.7" opacity="0.2"></line></svg></div>
+      <div class="card-body">
+        <span class="cat-badge">Culture</span>
+        <h2 class="card-title">The City as Algorithm</h2>
+        <p class="card-excerpt">From traffic lights to zoning permits, the logic of optimization has quietly colonized urban planning. Cities are run by systems that measure everything except what matters.</p>
+        <div class="card-foot"><span class="card-author">Marcus Chen</span><span class="card-info">Feb 7, 2026 · 9 min</span></div>
+      </div></article><article class="post-card" style="animation-delay: 0.14s;"><div class="card-img"><svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%" preserveAspectRatio="xMidYMid slice"><rect width="400" height="225" fill="#8B5CF622"></rect><circle cx="200" cy="112" r="88" fill="none" stroke="#8B5CF6" stroke-width="1" opacity="0.3"></circle><circle cx="200" cy="112" r="52" fill="none" stroke="#8B5CF6" stroke-width="1" opacity="0.2"></circle><circle cx="200" cy="112" r="3" fill="#8B5CF6" opacity="0.6"></circle><line x1="110" y1="112" x2="290" y2="112" stroke="#8B5CF6" stroke-width="0.7" opacity="0.2"></line><line x1="200" y1="22" x2="200" y2="202" stroke="#8B5CF6" stroke-width="0.7" opacity="0.2"></line></svg></div>
+      <div class="card-body">
+        <span class="cat-badge">Philosophy</span>
+        <h2 class="card-title">Silence as Practice</h2>
+        <p class="card-excerpt">Monastic traditions developed elaborate practices around silence long before smartphones. They understood the mind would wander — and built systems to counteract this.</p>
+        <div class="card-foot"><span class="card-author">Elena Vasquez</span><span class="card-info">Jan 28, 2026 · 8 min</span></div>
+      </div></article><article class="post-card" style="animation-delay: 0.21s;"><div class="card-img"><svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%" preserveAspectRatio="xMidYMid slice"><rect width="400" height="225" fill="#0D948822"></rect><circle cx="200" cy="112" r="88" fill="none" stroke="#0D9488" stroke-width="1" opacity="0.3"></circle><circle cx="200" cy="112" r="52" fill="none" stroke="#0D9488" stroke-width="1" opacity="0.2"></circle><circle cx="200" cy="112" r="3" fill="#0D9488" opacity="0.6"></circle><line x1="110" y1="112" x2="290" y2="112" stroke="#0D9488" stroke-width="0.7" opacity="0.2"></line><line x1="200" y1="22" x2="200" y2="202" stroke="#0D9488" stroke-width="0.7" opacity="0.2"></line></svg></div>
+      <div class="card-body">
+        <span class="cat-badge">Design</span>
+        <h2 class="card-title">Typography as Ideology</h2>
+        <p class="card-excerpt">When we pick a font, we're making a claim about authority and cultural belonging. The history of type design is a history of how societies understood themselves.</p>
+        <div class="card-foot"><span class="card-author">Marcus Chen</span><span class="card-info">Jan 9, 2026 · 7 min</span></div>
+      </div></article></div>
       <div class="pagination" id="pagination"></div>
     </div>
     <aside class="sidebar">
-      <div class="sw"><div class="sw-title">Popular This Week</div><div id="sw-popular"></div></div>
+      <div class="sw"><div class="sw-title">Popular This Week</div><div id="sw-popular">
+    <div class="sw-post" onclick="openPost(1)">
+      <div class="sw-thumb"><svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%" preserveAspectRatio="xMidYMid slice"><rect width="400" height="225" fill="#8B5CF622"></rect><circle cx="200" cy="112" r="88" fill="none" stroke="#8B5CF6" stroke-width="1" opacity="0.3"></circle><circle cx="200" cy="112" r="52" fill="none" stroke="#8B5CF6" stroke-width="1" opacity="0.2"></circle><circle cx="200" cy="112" r="3" fill="#8B5CF6" opacity="0.6"></circle><line x1="110" y1="112" x2="290" y2="112" stroke="#8B5CF6" stroke-width="0.7" opacity="0.2"></line><line x1="200" y1="22" x2="200" y2="202" stroke="#8B5CF6" stroke-width="0.7" opacity="0.2"></line></svg></div>
+      <div><div class="sw-ttl">The Intelligence We Invited: On Living With Artificial Minds</div><div class="sw-dt">Feb 14, 2026</div></div>
+    </div>
+    <div class="sw-post" onclick="openPost(2)">
+      <div class="sw-thumb"><svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%" preserveAspectRatio="xMidYMid slice"><rect width="400" height="225" fill="#0D948822"></rect><circle cx="200" cy="112" r="88" fill="none" stroke="#0D9488" stroke-width="1" opacity="0.3"></circle><circle cx="200" cy="112" r="52" fill="none" stroke="#0D9488" stroke-width="1" opacity="0.2"></circle><circle cx="200" cy="112" r="3" fill="#0D9488" opacity="0.6"></circle><line x1="110" y1="112" x2="290" y2="112" stroke="#0D9488" stroke-width="0.7" opacity="0.2"></line><line x1="200" y1="22" x2="200" y2="202" stroke="#0D9488" stroke-width="0.7" opacity="0.2"></line></svg></div>
+      <div><div class="sw-ttl">The City as Algorithm</div><div class="sw-dt">Feb 7, 2026</div></div>
+    </div>
+    <div class="sw-post" onclick="openPost(3)">
+      <div class="sw-thumb"><svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%" preserveAspectRatio="xMidYMid slice"><rect width="400" height="225" fill="#8B5CF622"></rect><circle cx="200" cy="112" r="88" fill="none" stroke="#8B5CF6" stroke-width="1" opacity="0.3"></circle><circle cx="200" cy="112" r="52" fill="none" stroke="#8B5CF6" stroke-width="1" opacity="0.2"></circle><circle cx="200" cy="112" r="3" fill="#8B5CF6" opacity="0.6"></circle><line x1="110" y1="112" x2="290" y2="112" stroke="#8B5CF6" stroke-width="0.7" opacity="0.2"></line><line x1="200" y1="22" x2="200" y2="202" stroke="#8B5CF6" stroke-width="0.7" opacity="0.2"></line></svg></div>
+      <div><div class="sw-ttl">Silence as Practice</div><div class="sw-dt">Jan 28, 2026</div></div>
+    </div></div></div>
       <div class="sw"><div class="sw-title">Browse Topics</div>
         <div class="tag-list">
           <span class="tag" onclick="filterPosts('Technology',null)">Technology</span>
@@ -519,7 +568,7 @@ textarea.adm-fc{resize:vertical;line-height:1.7;min-height:80px}
 <!-- POST -->
 <div class="page" id="page-post">
   <div class="back-btn" onclick="goPage('home')">
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>
     Back to all articles
   </div>
   <div id="post-root"></div>
@@ -536,10 +585,10 @@ textarea.adm-fc{resize:vertical;line-height:1.7;min-height:80px}
     </div>
     <div class="about-art">
       <svg viewBox="0 0 560 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
-        <rect width="560" height="400" fill="#edeae3"/>
-        <circle cx="280" cy="200" r="160" fill="none" stroke="#3a3633" stroke-width="1" opacity=".15"/>
-        <ellipse cx="280" cy="200" rx="160" ry="80" fill="none" stroke="#c0392b" stroke-width="1.5" opacity=".3"/>
-        <line x1="280" y1="40" x2="280" y2="360" stroke="#c0392b" stroke-width="1.5" opacity=".3"/>
+        <rect width="560" height="400" fill="#edeae3"></rect>
+        <circle cx="280" cy="200" r="160" fill="none" stroke="#3a3633" stroke-width="1" opacity=".15"></circle>
+        <ellipse cx="280" cy="200" rx="160" ry="80" fill="none" stroke="#c0392b" stroke-width="1.5" opacity=".3"></ellipse>
+        <line x1="280" y1="40" x2="280" y2="360" stroke="#c0392b" stroke-width="1.5" opacity=".3"></line>
       </svg>
     </div>
   </section>
@@ -547,9 +596,9 @@ textarea.adm-fc{resize:vertical;line-height:1.7;min-height:80px}
     <p class="sec-lbl">The Team</p>
     <h2 class="sec-title">The people behind the pages.</h2>
     <div class="team-grid">
-      <div class="team-card"><div class="team-av"><svg viewBox="0 0 72 72"><rect width="72" height="72" rx="36" fill="#8B5CF6"/><circle cx="36" cy="28" r="14" fill="rgba(255,255,255,.4)"/><ellipse cx="36" cy="62" rx="22" ry="16" fill="rgba(255,255,255,.3)"/></svg></div><div class="team-name">Elena Vasquez</div><div class="team-role">Editor in Chief</div><p class="team-bio">Former tech reporter. Elena writes about minds — artificial and otherwise.</p></div>
-      <div class="team-card"><div class="team-av"><svg viewBox="0 0 72 72"><rect width="72" height="72" rx="36" fill="#0D9488"/><circle cx="36" cy="28" r="14" fill="rgba(255,255,255,.4)"/><ellipse cx="36" cy="62" rx="22" ry="16" fill="rgba(255,255,255,.3)"/></svg></div><div class="team-name">Marcus Chen</div><div class="team-role">Senior Editor</div><p class="team-bio">Trained architect. Marcus writes on urban futures and design.</p></div>
-      <div class="team-card"><div class="team-av"><svg viewBox="0 0 72 72"><rect width="72" height="72" rx="36" fill="#D97706"/><circle cx="36" cy="28" r="14" fill="rgba(255,255,255,.4)"/><ellipse cx="36" cy="62" rx="22" ry="16" fill="rgba(255,255,255,.3)"/></svg></div><div class="team-name">Priya Nair</div><div class="team-role">Contributing Editor</div><p class="team-bio">Science journalist covering biology, ecology, and natural history.</p></div>
+      <div class="team-card"><div class="team-av"><svg viewBox="0 0 72 72"><rect width="72" height="72" rx="36" fill="#8B5CF6"></rect><circle cx="36" cy="28" r="14" fill="rgba(255,255,255,.4)"></circle><ellipse cx="36" cy="62" rx="22" ry="16" fill="rgba(255,255,255,.3)"></ellipse></svg></div><div class="team-name">Elena Vasquez</div><div class="team-role">Editor in Chief</div><p class="team-bio">Former tech reporter. Elena writes about minds — artificial and otherwise.</p></div>
+      <div class="team-card"><div class="team-av"><svg viewBox="0 0 72 72"><rect width="72" height="72" rx="36" fill="#0D9488"></rect><circle cx="36" cy="28" r="14" fill="rgba(255,255,255,.4)"></circle><ellipse cx="36" cy="62" rx="22" ry="16" fill="rgba(255,255,255,.3)"></ellipse></svg></div><div class="team-name">Marcus Chen</div><div class="team-role">Senior Editor</div><p class="team-bio">Trained architect. Marcus writes on urban futures and design.</p></div>
+      <div class="team-card"><div class="team-av"><svg viewBox="0 0 72 72"><rect width="72" height="72" rx="36" fill="#D97706"></rect><circle cx="36" cy="28" r="14" fill="rgba(255,255,255,.4)"></circle><ellipse cx="36" cy="62" rx="22" ry="16" fill="rgba(255,255,255,.3)"></ellipse></svg></div><div class="team-name">Priya Nair</div><div class="team-role">Contributing Editor</div><p class="team-bio">Science journalist covering biology, ecology, and natural history.</p></div>
     </div>
   </section>
 </div>
@@ -561,20 +610,20 @@ textarea.adm-fc{resize:vertical;line-height:1.7;min-height:80px}
       <h1>Let's start a <em style="font-style:italic;color:var(--accent)">conversation.</em></h1>
       <p>We read every message we receive. Whether you want to pitch a piece or share thoughts — we're interested.</p>
       <div style="margin-top:28px">
-        <div class="c-detail"><div class="c-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="c-lbl">Email</div><div class="c-val">hello@meridian.com</div></div></div>
-        <div class="c-detail"><div class="c-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="c-lbl">Location</div><div class="c-val">San Francisco & New York</div></div></div>
+        <div class="c-detail"><div class="c-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div><div><div class="c-lbl">Email</div><div class="c-val">hello@meridian.com</div></div></div>
+        <div class="c-detail"><div class="c-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div><div><div class="c-lbl">Location</div><div class="c-val">San Francisco &amp; New York</div></div></div>
       </div>
     </div>
     <div class="contact-form-wrap">
       <h3>Send us a message</h3>
       <form id="contact-form" onsubmit="submitContact(event)">
-        <div class="fg"><label class="fl">Your name</label><input class="fc" type="text" placeholder="Jane Smith" required/></div>
-        <div class="fg"><label class="fl">Email</label><input class="fc" type="email" placeholder="jane@example.com" required/></div>
-        <div class="fg"><label class="fl">Message</label><textarea class="fc" rows="5" placeholder="Write your message…" required></textarea></div>
+        <div class="fg"><label class="fl">Your name</label><input class="fc" type="text" placeholder="Jane Smith" required=""></div>
+        <div class="fg"><label class="fl">Email</label><input class="fc" type="email" placeholder="jane@example.com" required=""></div>
+        <div class="fg"><label class="fl">Message</label><textarea class="fc" rows="5" placeholder="Write your message…" required=""></textarea></div>
         <button type="submit" class="btn-primary">Send Message</button>
       </form>
       <div class="form-ok" id="form-ok">
-        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
         <h3>Message received!</h3><p>We'll be in touch within 5 business days.</p>
       </div>
     </div>
@@ -588,7 +637,7 @@ textarea.adm-fc{resize:vertical;line-height:1.7;min-height:80px}
   <h2>Don't miss an essay.</h2>
   <p>New pieces, twice a month. No noise.</p>
   <form class="nl-form" onsubmit="subNl(event)">
-    <input type="email" placeholder="your@email.com" required/>
+    <input type="email" placeholder="your@email.com" required="">
     <button type="submit">Subscribe</button>
   </form>
 </section>
@@ -613,9 +662,9 @@ textarea.adm-fc{resize:vertical;line-height:1.7;min-height:80px}
     <div class="adm-logo">Meri<span>dian</span></div>
     <div class="adm-sub">Author Login</div>
     <label class="adm-lbl">Username</label>
-    <input class="adm-inp" id="al-user" type="text" placeholder="author1 or author2"/>
+    <input class="adm-inp" id="al-user" type="text" placeholder="author1 or author2">
     <label class="adm-lbl">Password</label>
-    <input class="adm-inp" id="al-pass" type="password" placeholder="••••••••"/>
+    <input class="adm-inp" id="al-pass" type="password" placeholder="••••••••">
     <button class="adm-login-btn" onclick="doLogin()">Sign In →</button>
     <div class="adm-err" id="al-err"></div>
     <div class="adm-hint">
@@ -626,15 +675,15 @@ textarea.adm-fc{resize:vertical;line-height:1.7;min-height:80px}
     <div class="gh-section">
       <button class="gh-toggle-btn" onclick="toggleGhFields()" id="gh-toggle">
         ⚙️ GitHub Settings (for auto-publish)
-        <svg id="gh-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        <svg id="gh-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transform: rotate(180deg);"><path d="M6 9l6 6 6-6"></path></svg>
       </button>
-      <div class="gh-fields" id="gh-fields">
+      <div class="gh-fields open" id="gh-fields">
         <label class="adm-lbl" style="margin-top:0">GitHub Username</label>
-        <input class="adm-inp" id="gh-user" type="text" placeholder="e.g. johnsmith"/>
+        <input class="adm-inp" id="gh-user" type="text" placeholder="e.g. johnsmith">
         <label class="adm-lbl">Repository Name</label>
-        <input class="adm-inp" id="gh-repo" type="text" placeholder="e.g. johnsmith.github.io"/>
+        <input class="adm-inp" id="gh-repo" type="text" placeholder="e.g. johnsmith.github.io">
         <label class="adm-lbl">Personal Access Token</label>
-        <input class="adm-inp" id="gh-token" type="password" placeholder="ghp_xxxxxxxxxxxxxxxx"/>
+        <input class="adm-inp" id="gh-token" type="password" placeholder="ghp_xxxxxxxxxxxxxxxx">
         <button class="gh-save-btn" onclick="saveGhSettings()">Save GitHub Settings</button>
         <p class="gh-note">Token saved only in your browser's localStorage — never shared publicly.</p>
       </div>
@@ -644,7 +693,7 @@ textarea.adm-fc{resize:vertical;line-height:1.7;min-height:80px}
 </div>
 
 <!-- ========== ADMIN PANEL ========== -->
-<div class="adm-panel" id="adm-panel">
+<div class="adm-panel visible" id="adm-panel">
   <div class="adm-topbar">
     <div class="adm-topbar-l">
       <div class="adm-brand">Meri<span>dian</span></div>
@@ -652,49 +701,127 @@ textarea.adm-fc{resize:vertical;line-height:1.7;min-height:80px}
       <div class="adm-page-title">Author Dashboard</div>
     </div>
     <div class="adm-topbar-r">
-      <div class="adm-user"><div class="adm-dot"></div><span id="adm-user-name">Author</span></div>
+      <div class="adm-user"><div class="adm-dot"></div><span id="adm-user-name">Author One</span></div>
       <button class="adm-topbar-btn view" onclick="closeAdmPanel()">← View Blog</button>
       <button class="adm-topbar-btn logout" onclick="doLogout()">Sign Out</button>
     </div>
   </div>
   <div class="adm-body">
     <div class="adm-tabs">
-      <div class="adm-tab active" id="tab-posts" onclick="switchTab('posts')">📄 My Posts</div>
+      <div class="adm-tab" id="tab-posts" onclick="switchTab('posts')">📄 My Posts</div>
       <div class="adm-tab" id="tab-editor" onclick="switchTab('editor');newPost()">✏️ Write New</div>
-      <div class="adm-tab" id="tab-export" onclick="switchTab('export');initExport()">🚀 Publish</div>
+      <div class="adm-tab active" id="tab-export" onclick="switchTab('export');initExport()">🚀 Publish</div>
     </div>
 
     <!-- POSTS VIEW -->
-    <div class="adm-view active" id="view-posts">
+    <div class="adm-view" id="view-posts">
       <div class="adm-list-header">
-        <div class="adm-list-count">All Posts (<span id="post-count">0</span>)</div>
+        <div class="adm-list-count">All Posts (<span id="post-count">5</span>)</div>
         <button class="adm-new-btn" onclick="switchTab('editor');newPost()">+ Write New</button>
       </div>
-      <div class="adm-post-list" id="post-list"></div>
+      <div class="adm-post-list" id="post-list">
+    <div class="adm-item">
+      <div class="adm-item-info">
+        <div class="adm-item-title">The Intelligence We Invited: On Living With Artificial Minds</div>
+        <div class="adm-item-meta">Technology · Elena Vasquez · Feb 14, 2026</div>
+      </div>
+      <span class="adm-status pub">Published</span>
+      <div class="adm-actions">
+        <button class="adm-act edit" onclick="editPost(1)" title="Edit">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+        </button>
+        <button class="adm-act del" onclick="promptDel(1,'The Intelligence We Invited: On Living With Artificial Minds')" title="Delete">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path></svg>
+        </button>
+      </div>
+    </div>
+    <div class="adm-item">
+      <div class="adm-item-info">
+        <div class="adm-item-title">The City as Algorithm</div>
+        <div class="adm-item-meta">Culture · Marcus Chen · Feb 7, 2026</div>
+      </div>
+      <span class="adm-status pub">Published</span>
+      <div class="adm-actions">
+        <button class="adm-act edit" onclick="editPost(2)" title="Edit">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+        </button>
+        <button class="adm-act del" onclick="promptDel(2,'The City as Algorithm')" title="Delete">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path></svg>
+        </button>
+      </div>
+    </div>
+    <div class="adm-item">
+      <div class="adm-item-info">
+        <div class="adm-item-title">Silence as Practice</div>
+        <div class="adm-item-meta">Philosophy · Elena Vasquez · Jan 28, 2026</div>
+      </div>
+      <span class="adm-status pub">Published</span>
+      <div class="adm-actions">
+        <button class="adm-act edit" onclick="editPost(3)" title="Edit">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+        </button>
+        <button class="adm-act del" onclick="promptDel(3,'Silence as Practice')" title="Delete">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path></svg>
+        </button>
+      </div>
+    </div>
+    <div class="adm-item">
+      <div class="adm-item-info">
+        <div class="adm-item-title">Typography as Ideology</div>
+        <div class="adm-item-meta">Design · Marcus Chen · Jan 9, 2026</div>
+      </div>
+      <span class="adm-status pub">Published</span>
+      <div class="adm-actions">
+        <button class="adm-act edit" onclick="editPost(4)" title="Edit">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+        </button>
+        <button class="adm-act del" onclick="promptDel(4,'Typography as Ideology')" title="Delete">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path></svg>
+        </button>
+      </div>
+    </div>
+    <div class="adm-item">
+      <div class="adm-item-info">
+        <div class="adm-item-title">Test</div>
+        <div class="adm-item-meta">Technology · Author One · Feb 18, 2026</div>
+      </div>
+      <span class="adm-status dft">Draft</span>
+      <div class="adm-actions">
+        <button class="adm-act edit" onclick="editPost(1771436434838)" title="Edit">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+        </button>
+        <button class="adm-act del" onclick="promptDel(1771436434838,'Test')" title="Delete">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path></svg>
+        </button>
+      </div>
+    </div></div>
     </div>
 
     <!-- EDITOR VIEW -->
     <div class="adm-view" id="view-editor">
       <div class="adm-form">
-        <div class="adm-fg"><label class="adm-fl">Title *</label><input class="adm-fc" id="af-title" type="text" placeholder="Enter a compelling title…"/></div>
-        <div class="adm-fg"><label class="adm-fl">Subtitle</label><input class="adm-fc" id="af-subtitle" type="text" placeholder="A sentence expanding on the title…"/></div>
+        <div class="adm-fg"><label class="adm-fl">Title *</label><input class="adm-fc" id="af-title" type="text" placeholder="Enter a compelling title…"></div>
+        <div class="adm-fg"><label class="adm-fl">Subtitle</label><input class="adm-fc" id="af-subtitle" type="text" placeholder="A sentence expanding on the title…"></div>
         <div class="adm-fg"><label class="adm-fl">Excerpt * (shown on homepage card)</label><textarea class="adm-fc" id="af-excerpt" rows="3" placeholder="2–3 sentence preview…"></textarea></div>
         <div class="adm-fg">
           <label class="adm-fl">Content * (HTML supported)</label>
           <div class="adm-toolbar">
-            <button class="adm-tb-btn" onclick="wrap('<p>','</p>')">¶</button>
-            <button class="adm-tb-btn" onclick="wrap('<strong>','</strong>')"><b>B</b></button>
-            <button class="adm-tb-btn" onclick="wrap('<em>','</em>')"><i>I</i></button>
+            <button class="adm-tb-btn" onclick="wrap('&lt;p&gt;','&lt;/p&gt;')">¶</button>
+            <button class="adm-tb-btn" onclick="wrap('&lt;strong&gt;','&lt;/strong&gt;')"><b>B</b></button>
+            <button class="adm-tb-btn" onclick="wrap('&lt;em&gt;','&lt;/em&gt;')"><i>I</i></button>
             <div class="adm-tb-sep"></div>
-            <button class="adm-tb-btn" onclick="ins('<h2>Heading</h2>')">H2</button>
-            <button class="adm-tb-btn" onclick="ins('<h3>Sub Heading</h3>')">H3</button>
+            <button class="adm-tb-btn" onclick="ins('&lt;h2&gt;Heading&lt;/h2&gt;')">H2</button>
+            <button class="adm-tb-btn" onclick="ins('&lt;h3&gt;Sub Heading&lt;/h3&gt;')">H3</button>
             <div class="adm-tb-sep"></div>
-            <button class="adm-tb-btn" onclick="ins('<blockquote>Quote here.</blockquote>')">"</button>
-            <button class="adm-tb-btn" onclick="wrap('<code>','</code>')">{}</button>
+            <button class="adm-tb-btn" onclick="ins('&lt;blockquote&gt;Quote here.&lt;/blockquote&gt;')">"</button>
+            <button class="adm-tb-btn" onclick="wrap('&lt;code&gt;','&lt;/code&gt;')">{}</button>
             <div class="adm-tb-sep"></div>
-            <button class="adm-tb-btn" onclick="ins('<ul>\n  <li>Item</li>\n</ul>')">UL</button>
+            <button class="adm-tb-btn" onclick="ins('&lt;ul&gt;\n  &lt;li&gt;Item&lt;/li&gt;\n&lt;/ul&gt;')">UL</button>
           </div>
-          <textarea class="adm-fc adm-content-area" id="af-content" placeholder="Write your article in HTML…&#10;&lt;p&gt;Your paragraph.&lt;/p&gt;&#10;&lt;h2&gt;A Heading&lt;/h2&gt;&#10;&lt;blockquote&gt;A quote.&lt;/blockquote&gt;"></textarea>
+          <textarea class="adm-fc adm-content-area" id="af-content" placeholder="Write your article in HTML…
+&lt;p&gt;Your paragraph.&lt;/p&gt;
+&lt;h2&gt;A Heading&lt;/h2&gt;
+&lt;blockquote&gt;A quote.&lt;/blockquote&gt;"></textarea>
         </div>
         <div class="adm-2col">
           <div class="adm-fg"><label class="adm-fl">Category *</label>
@@ -704,9 +831,9 @@ textarea.adm-fc{resize:vertical;line-height:1.7;min-height:80px}
               <option>Design</option><option>Science</option><option>Philosophy</option>
             </select>
           </div>
-          <div class="adm-fg"><label class="adm-fl">Read Time</label><input class="adm-fc" id="af-rt" type="text" placeholder="e.g. 5 min"/></div>
+          <div class="adm-fg"><label class="adm-fl">Read Time</label><input class="adm-fc" id="af-rt" type="text" placeholder="e.g. 5 min"></div>
         </div>
-        <div class="adm-fg"><label class="adm-fl">Tags (comma-separated)</label><input class="adm-fc" id="af-tags" type="text" placeholder="Technology, AI, Society"/></div>
+        <div class="adm-fg"><label class="adm-fl">Tags (comma-separated)</label><input class="adm-fc" id="af-tags" type="text" placeholder="Technology, AI, Society"></div>
         <div class="adm-toggle-row">
           <span class="adm-toggle-lbl">Status: <strong id="status-lbl">Draft</strong></span>
           <div class="toggle" id="pub-toggle" onclick="togglePub()"></div>
@@ -719,19 +846,17 @@ textarea.adm-fc{resize:vertical;line-height:1.7;min-height:80px}
     </div>
 
     <!-- EXPORT/PUBLISH VIEW -->
-    <div class="adm-view" id="view-export">
+    <div class="adm-view active" id="view-export">
       <!-- Auto publish -->
       <div class="adm-export-card" style="border-color:#4cd9a030;background:linear-gradient(135deg,#0a140a,#0d0d0f)">
         <h3 style="color:#4cd9a0">🚀 One-Click Publish to GitHub Pages</h3>
         <p>Automatically pushes your updated blog live — no manual steps needed.</p>
         <div class="adm-gh-status" id="gh-status-bar">
-          <div class="adm-gh-dot" id="gh-dot" style="background:#fbbf24"></div>
-          <span id="gh-status-txt" style="color:#fbbf24;font-family:var(--fm);font-size:.75rem">Not configured — open ⚙️ GitHub Settings in login screen.</span>
+          <div class="adm-gh-dot" id="gh-dot" style="background: rgb(76, 217, 160);"></div>
+          <span id="gh-status-txt" style="color: rgb(76, 217, 160); font-family: var(--fm); font-size: 0.75rem;">Connected: MisterCaptain007/Meridian</span>
         </div>
-        <button class="adm-publish-btn" id="pub-btn" onclick="publishToGH()">
-          🚀 Publish Live to GitHub Pages
-        </button>
-        <div class="adm-log" id="pub-log"></div>
+        <button class="adm-publish-btn" id="pub-btn" onclick="publishToGH()" disabled="" style="background: rgb(38, 38, 46); color: rgb(152, 150, 170);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation:spin 1s linear infinite;display:inline-block"><path d="M21 12a9 9 0 1 1-6.219-8.56"></path></svg> Publishing…</button>
+        <div class="adm-log" id="pub-log" style="display: block;">⏳ Generating updated file…</div>
       </div>
       <!-- Manual -->
       <div class="adm-export-card">
@@ -791,7 +916,8 @@ const AUTHORS = {
    STORAGE
 ============================================ */
 function getStored(){
-  try{return JSON.parse(localStorage.getItem('m_posts')||'[]');}catch(e){return[];}
+  const seed=[{"id":1771436434838,"title":"Test","subtitle":"","excerpt":"TTttttttttttt","content":"TTTTTTTT","category":"Technology","author":"Author One","authorColor":"#8B5CF6","date":"Feb 18, 2026","readTime":"5 min","tags":[],"published":false}];
+  try{const ls=JSON.parse(localStorage.getItem('m_posts')||'[]');const ids=new Set(ls.map(p=>p.id));return[...seed.filter(p=>!ids.has(p.id)),...ls];}catch(e){return seed;}
 }
 function setStored(arr){localStorage.setItem('m_posts',JSON.stringify(arr));}
 function getAllPosts(){
@@ -1276,5 +1402,6 @@ async function publishToGH(){
 ============================================ */
 renderHome();
 </script>
-</body>
-</html>
+
+
+</body></html>
